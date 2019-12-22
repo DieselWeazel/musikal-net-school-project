@@ -1,0 +1,9 @@
+http://localhost:8080/api/artist/
+http://localhost:8080/api/track/
+http://localhost:8080/api/album/
+http://localhost:8080/api/genre/
+
+http://localhost:8080/api/artist/id?artist=1
+http://localhost:8080/api/album/id?album=1
+http://localhost:8080/api/track/id?track=1
+http://localhost:8080/api/genre/id?genre=1
