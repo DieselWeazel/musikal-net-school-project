@@ -1,12 +1,23 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"  lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Calculator - Jonathan Harr</title>
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
 <!--    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />-->
-<!--    <script th:src="@{buttondialer.js}" type="module"></script>-->
+    <script th:src="@{fetch.js}" type="module"></script>
 <!--    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">-->
 </head>
+<script th:inline="javascript">
+
+    $(document).ready(function (){
+        console.log("hello?");
+    })
+</script>
 <body>
 
 <header></header>
