@@ -116,12 +116,33 @@ function fetch() {
     url: 'http://localhost:8080/api/artist/'
   }).then(function (data) {
     console.log(data);
+    $.each(data, function(index, item) {
+      $("<p>"+ item.name +"</p></p><img alt=\"lol\" height=\"370\" width=\"370\" src=\"" + item.image + "\"/>").appendTo($("#test"));
+    })
+    // $("<img alt=\"lol\" height=\"370\" width=\"370\" src=\"" + data[0].image + "\"/>").appendTo($("#test"));
+  });
+}
+
+function fetchAlbum() {
+  $.ajax({
+    url: 'http://localhost:8080/api/album/'
+  }).then(function (data) {
+    console.log(data);
+    $.each(data, function(index, item) {
+      $("<p>"+ item.name +"</p></p><img alt=\"lol\" height=\"370\" width=\"370\" src=\"" + item.image + "\"/>").appendTo($("#test"));
+      var trackList = item.tracks;
+      $.each(trackList, function(trackIndex, trackItem) {
+        $("<p>" + trackItem.track +"</p>").appendTo($("#test"));
+      })
+    })
+
+    // $("<img alt=\"lol\" height=\"370\" width=\"370\" src=\"" + data[0].image + "\"/>").appendTo($("#test"));
   });
 }
 //
 $(function() {
-  alert("hej!");
   fetch();
+  fetchAlbum();
 });
 // $(document).ready(function() {
 //   $.ajax({

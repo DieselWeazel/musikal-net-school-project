@@ -24,130 +24,130 @@ public class MusikalnetApplication {
     SpringApplication.run(MusikalnetApplication.class, args);
   }
 
-  @Bean
-  public CommandLineRunner commandLineRunner(AbstractMusicService<Artist, ArtistDTO> artistService,
-                                             AbstractMusicService<Album, AlbumDTO> albumService,
-                                             AbstractMusicService<Track, TrackDTO> trackService) {
-    return args -> {
-      Track track = new Track("Trip to Persist", "Trip track");
-
-      List<Track> trackList = new ArrayList<>();
-      trackList.add(track);
-
-      Artist artist = new Artist("Dr Persist", "Artist persistancedesc");
-      Genre genre = new Genre("Frenchcore", "Persist me Descrip");
-      Album album = new Album("Trip to albums", "Album to persist", trackList, artist, genre);
-
-      List<Album> albumList = new ArrayList<>();
-      albumList.add(album);
-      artist.setArtistAlbumList(albumList);
-      artist.setArtistTrackList(trackList);
-      artist.setGenre(genre);
-      track.setGenre(genre);
-      track.setAlbum(album);
-//      System.out.println(artist.toString());
-      System.out.println(artistService.createEntity(artist).toString());
-
-      //      Track track = new Track("TrackTitle", "A track");
-////      trackRepository.save(track);
+//  @Bean
+//  public CommandLineRunner commandLineRunner(AbstractMusicService<Artist, ArtistDTO> artistService,
+//                                             AbstractMusicService<Album, AlbumDTO> albumService,
+//                                             AbstractMusicService<Track, TrackDTO> trackService) {
+//    return args -> {
+//      Track track = new Track("Trip to Persist", "Trip track");
+//
 //      List<Track> trackList = new ArrayList<>();
 //      trackList.add(track);
-//      Album album = new Album("An album", "An AlbumDescription", trackList);
-////      albumRepository.save(album);
-//      Artist artist = new Artist("An Artist", "An Artist Description");
+//
+//      Artist artist = new Artist("Dr Persist", "Artist persistancedesc");
+//      Genre genre = new Genre("Frenchcore", "Persist me Descrip");
+//      Album album = new Album("Trip to albums", "Album to persist", trackList, artist, genre);
+//
 //      List<Album> albumList = new ArrayList<>();
 //      albumList.add(album);
 //      artist.setArtistAlbumList(albumList);
-////      artistRepository.save(artist);
-//
 //      artist.setArtistTrackList(trackList);
+//      artist.setGenre(genre);
+//      track.setGenre(genre);
+//      track.setAlbum(album);
+////      System.out.println(artist.toString());
+//      System.out.println(artistService.createEntity(artist).toString());
 //
-//      Genre genre = new Genre("Genre", "genredesc");
-//      genre.setAlbumList(albumList);
-//      List<Artist> artistList = new ArrayList<>();
-//      artistList.add(artist);
-//      genre.setArtistList(artistList);
-//      genre.setTrackList(trackList);
-//      genreRepository.save(genre);
+//      //      Track track = new Track("TrackTitle", "A track");
+//////      trackRepository.save(track);
+////      List<Track> trackList = new ArrayList<>();
+////      trackList.add(track);
+////      Album album = new Album("An album", "An AlbumDescription", trackList);
+//////      albumRepository.save(album);
+////      Artist artist = new Artist("An Artist", "An Artist Description");
+////      List<Album> albumList = new ArrayList<>();
+////      albumList.add(album);
+////      artist.setArtistAlbumList(albumList);
 //////      artistRepository.save(artist);
+////
+////      artist.setArtistTrackList(trackList);
+////
+////      Genre genre = new Genre("Genre", "genredesc");
+////      genre.setAlbumList(albumList);
+////      List<Artist> artistList = new ArrayList<>();
+////      artistList.add(artist);
+////      genre.setArtistList(artistList);
+////      genre.setTrackList(trackList);
+////      genreRepository.save(genre);
+////////      artistRepository.save(artist);
+////
+////
+////      Track track2= new Track("TrackTitle", "A track");
+//////      trackRepository.save(track);
+////      List<Track> trackList2 = new ArrayList<>();
+////      trackList2.add(track2);
+////      Album album2 = new Album("An album", "An AlbumDescription", trackList);
+//////      albumRepository.save(album);
+////      Artist artist2 = new Artist("An Artist", "An Artist Description");
+////      List<Album> albumList2 = new ArrayList<>();
+////      albumList2.add(album2);
+////      artist2.setArtistAlbumList(albumList2);
+//////      artistRepository.save(artist);
+////
+////      artist2.setArtistTrackList(trackList2);
+////
+////      Genre genre2 = new Genre("Genre", "genredesc");
+////      genre2.setAlbumList(albumList2);
+////      List<Artist> artistList2 = new ArrayList<>();
+////      artistList2.add(artist2);
+////      genre2.setArtistList(artistList2);
+////      genre2.setTrackList(trackList2);
+////      genreRepository.save(genre2);
+////
+////      Track track1 = new Track("En sång", "En sång om ingenting");
+////      Track track2 = new Track("Lolsång", "En sång om lol");
+////      Track track3 = new Track("Derpsong", "En sång om derps");
+//////      trackRepository.save(track1);
+//////      trackRepository.save(track2);
+//////      trackRepository.save(track3);
+////
+////
+////      List<Track> albumTrackList2 = new ArrayList<>();
+////      albumTrackList2.add(track1);
+////      albumTrackList2.add(track2);
+////      albumTrackList2.add(track3);
+////      Album album2 = new Album("Ett album", "Album om grejer", albumTrackList2);
+//////      track1.setAlbum(album2);
+//////      track2.setAlbum(album2);
+//////      track3.setAlbum(album2);
+//////      albumRepository.save(album2);
+////
+////      Artist myArtist = new Artist("The artist", "Artist description");
+////      List<Album> bunchOfAlbums = new ArrayList<>();
+////      bunchOfAlbums.add(album2);
+////      myArtist.setArtistAlbumList(bunchOfAlbums);
+//////      artistRepository.save(myArtist);
+////
+////      Genre genre1 = new Genre("Rock", "Rock n roll");
+////      genre1.setAlbumList(bunchOfAlbums);
+////      List<Artist> artistList = new ArrayList<>();
+////      artistList.add(artist);
+////      genre1.setArtistList(artistList);
+////      genre1.setTrackList(trackList);
+////      genreRepository.save(genre1);
+////      Genre genre2 = new Genre("Derp", "DerpyDerp");
+////      genre2.setAlbumList(albumList);
+////      List<Artist> artistList2 = new ArrayList<>();
+////      artistList2.add(myArtist);
+////      genre2.setArtistList(artistList);
+////      genre2.setTrackList(albumTrackList2);
+////      genreRepository.save(genre2);
+//    };
+//  }
 //
+//  @Bean
+//  public CommandLineRunner commandLineRunnerPresent(ArtistRepository artistRepository,
+//                                             AlbumRepository albumRepository,
+//                                             TrackRepository trackRepository,
+//                                             GenreRepository genreRepository) {
+//    return args -> {
+//      Artist artist = artistRepository.findByArtistName("Dr Persist");
+//      System.out.println("Test: " + artist.getEntityTitle());
 //
-//      Track track2= new Track("TrackTitle", "A track");
-////      trackRepository.save(track);
-//      List<Track> trackList2 = new ArrayList<>();
-//      trackList2.add(track2);
-//      Album album2 = new Album("An album", "An AlbumDescription", trackList);
-////      albumRepository.save(album);
-//      Artist artist2 = new Artist("An Artist", "An Artist Description");
-//      List<Album> albumList2 = new ArrayList<>();
-//      albumList2.add(album2);
-//      artist2.setArtistAlbumList(albumList2);
-////      artistRepository.save(artist);
-//
-//      artist2.setArtistTrackList(trackList2);
-//
-//      Genre genre2 = new Genre("Genre", "genredesc");
-//      genre2.setAlbumList(albumList2);
-//      List<Artist> artistList2 = new ArrayList<>();
-//      artistList2.add(artist2);
-//      genre2.setArtistList(artistList2);
-//      genre2.setTrackList(trackList2);
-//      genreRepository.save(genre2);
-//
-//      Track track1 = new Track("En sång", "En sång om ingenting");
-//      Track track2 = new Track("Lolsång", "En sång om lol");
-//      Track track3 = new Track("Derpsong", "En sång om derps");
-////      trackRepository.save(track1);
-////      trackRepository.save(track2);
-////      trackRepository.save(track3);
-//
-//
-//      List<Track> albumTrackList2 = new ArrayList<>();
-//      albumTrackList2.add(track1);
-//      albumTrackList2.add(track2);
-//      albumTrackList2.add(track3);
-//      Album album2 = new Album("Ett album", "Album om grejer", albumTrackList2);
-////      track1.setAlbum(album2);
-////      track2.setAlbum(album2);
-////      track3.setAlbum(album2);
-////      albumRepository.save(album2);
-//
-//      Artist myArtist = new Artist("The artist", "Artist description");
-//      List<Album> bunchOfAlbums = new ArrayList<>();
-//      bunchOfAlbums.add(album2);
-//      myArtist.setArtistAlbumList(bunchOfAlbums);
-////      artistRepository.save(myArtist);
-//
-//      Genre genre1 = new Genre("Rock", "Rock n roll");
-//      genre1.setAlbumList(bunchOfAlbums);
-//      List<Artist> artistList = new ArrayList<>();
-//      artistList.add(artist);
-//      genre1.setArtistList(artistList);
-//      genre1.setTrackList(trackList);
-//      genreRepository.save(genre1);
-//      Genre genre2 = new Genre("Derp", "DerpyDerp");
-//      genre2.setAlbumList(albumList);
-//      List<Artist> artistList2 = new ArrayList<>();
-//      artistList2.add(myArtist);
-//      genre2.setArtistList(artistList);
-//      genre2.setTrackList(albumTrackList2);
-//      genreRepository.save(genre2);
-    };
-  }
-//
-  @Bean
-  public CommandLineRunner commandLineRunnerPresent(ArtistRepository artistRepository,
-                                             AlbumRepository albumRepository,
-                                             TrackRepository trackRepository,
-                                             GenreRepository genreRepository) {
-    return args -> {
-      Artist artist = artistRepository.findByArtistName("Dr Persist");
-      System.out.println("Test: " + artist.getEntityTitle());
-
-      Album album = albumRepository.findByAlbumName("Trip to albums");
-      System.out.println("Test2 : " + album.getEntityTitle());
-    };
-  }
+//      Album album = albumRepository.findByAlbumName("Trip to albums");
+//      System.out.println("Test2 : " + album.getEntityTitle());
+//    };
+//  }
 //  @Bean
 //  public CommandLineRunner commandLineRunnerPresent2(ArtistRepository artistRepository,
 //                                                    AlbumRepository albumRepository,
