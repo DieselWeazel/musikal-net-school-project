@@ -32,6 +32,16 @@ public class AlbumServiceImpl implements AbstractMusicService<Album, AlbumDTO> {
     }
 
     @Override
+    public List<AlbumDTO> laodByFilter(String filterValue) {
+        return albumRepository.findByEntityTitleContaining(filterValue).stream().map(this::returnAlbumDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AlbumDTO> loadByGenre(String genre) {
+        return albumRepository.findAll().stream().map(this::returnAlbumDTO).filter(album -> album.getGenre().getGenre().equals(genre)).collect(Collectors.toList());
+    }
+
+    @Override
     public AlbumDTO findEntity(Album album) {
         Album findAlbum = albumRepository.findById(album.getId()).orElseThrow(RuntimeException::new);
         if (findAlbum != null) {

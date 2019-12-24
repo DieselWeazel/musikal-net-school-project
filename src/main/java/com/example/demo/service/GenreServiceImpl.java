@@ -35,6 +35,16 @@ public class GenreServiceImpl implements AbstractMusicService<Genre, GenreDTO> {
     }
 
     @Override
+    public List<GenreDTO> laodByFilter(String filterValue) {
+        return null;
+    }
+
+    @Override
+    public List<GenreDTO> loadByGenre(String genre) {
+        return null;
+    }
+
+    @Override
     public GenreDTO findEntity(Genre genre) {
         Genre findGenre = genreRepository.findById(genre.getId()).orElseThrow(RuntimeException::new);
         if (findGenre != null) {

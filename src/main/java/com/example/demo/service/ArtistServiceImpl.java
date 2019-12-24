@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Artist;
+import com.example.demo.model.dto.AlbumDTO;
 import com.example.demo.model.dto.ArtistDTO;
 import com.example.demo.model.dto.simple.SimpleAlbumDTO;
 import com.example.demo.model.dto.simple.SimpleGenreDTO;
@@ -26,6 +27,16 @@ public class ArtistServiceImpl implements AbstractMusicService<Artist, ArtistDTO
     @Override
     public List<ArtistDTO> loadAll() {
         return artistRepository.findAll().stream().map(this::returnArtistDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ArtistDTO> laodByFilter(String filterValue) {
+        return artistRepository.findByEntityTitleContaining(filterValue).stream().map(this::returnArtistDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ArtistDTO> loadByGenre(String genre) {
+        return artistRepository.findAll().stream().map(this::returnArtistDTO).filter(artist -> artist.getGenre().getGenre().equals(genre)).collect(Collectors.toList());
     }
 
     @Override

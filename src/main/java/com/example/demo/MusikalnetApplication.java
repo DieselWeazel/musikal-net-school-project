@@ -135,19 +135,27 @@ public class MusikalnetApplication {
 //    };
 //  }
 //
-//  @Bean
-//  public CommandLineRunner commandLineRunnerPresent(ArtistRepository artistRepository,
-//                                             AlbumRepository albumRepository,
-//                                             TrackRepository trackRepository,
-//                                             GenreRepository genreRepository) {
-//    return args -> {
+  @Bean
+  public CommandLineRunner commandLineRunnerPresent(ArtistRepository artistRepository,
+                                             AlbumRepository albumRepository,
+                                             TrackRepository trackRepository,
+                                             GenreRepository genreRepository) {
+    return args -> {
 //      Artist artist = artistRepository.findByArtistName("Dr Persist");
 //      System.out.println("Test: " + artist.getEntityTitle());
-//
-//      Album album = albumRepository.findByAlbumName("Trip to albums");
-//      System.out.println("Test2 : " + album.getEntityTitle());
-//    };
-//  }
+
+
+      List<Album> albumFilterList = albumRepository.findByEntityTitleContaining("Maniac");
+      albumFilterList.forEach(e-> System.out.println("filter result: " + e.getEntityTitle()));
+
+      List<Artist> artistFilterList = artistRepository.findByEntityTitleContaining("Pa");
+      artistFilterList.forEach(e-> System.out.println("Filtered artist res: " + e.getEntityTitle()));
+
+      List<Track> trackFilterList = trackRepository.findByEntityTitleContaining("Hardcore");
+
+      trackFilterList.forEach(e-> System.out.println("Filter tracks: " + e.getEntityTitle() + " by: " + e.getArtist().getEntityTitle()));
+    };
+  }
 //  @Bean
 //  public CommandLineRunner commandLineRunnerPresent2(ArtistRepository artistRepository,
 //                                                    AlbumRepository albumRepository,
@@ -210,22 +218,15 @@ public class MusikalnetApplication {
 //
 //    };
 //  }
-//  @Bean
-//  public CommandLineRunner cmdRunnerTestService2(AbstractMusicService<Album, Track> albumServiceImpl, AlbumRepository albumRepository) {
-//    return args -> {
-//
-//      A
-//      Album album = albumServiceImpl.findEntity(new Album);
-//      System.out.println(album.getDescription());
-////      System.out.println(album.getTrackList().size());
-//
-////      Album album2 = albumRepository.findById(1L).orElseThrow(RuntimeException::new);
-////      System.out.println("album2: " + album2.getDescription());
-////      System.out.println("album2: " + album2.getTrackList().size());
-//      List<Track> trackList = albumServiceImpl.loadAllChildEntities(album);
-//
-//      trackList.forEach(e-> System.out.println("from service: " + e.getDescription()));
-//
-//    };
-//  }
+  @Bean
+  public CommandLineRunner cmdRunnerTestService2(AbstractMusicService<Album, AlbumDTO> albumServiceImpl) {
+    return args -> {
+
+      List<AlbumDTO> filterList = albumServiceImpl.laodByFilter("The ");
+      filterList.forEach(e-> System.out.println("FILTER SERVICE IMPL: " + e.getName()));
+
+      List<AlbumDTO> fiterGenre = albumServiceImpl.loadByGenre("Frenchcore");
+      fiterGenre.forEach(e-> System.out.println("FILTER SERVICE IMPL(frenchcore): " + e.getName()));
+    };
+  }
 }

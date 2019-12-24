@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface AbstractMusicService<V, X> {
     List<X> loadAll();
+    List<X> laodByFilter(String filterValue);
+    List<X> loadByGenre(String genre);
     X findEntity(V v);
     X createEntity(V v);
     X updateEntity(Long id, V v);

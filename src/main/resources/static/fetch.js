@@ -129,7 +129,7 @@ function fetchAlbum() {
   }).then(function (data) {
     console.log(data);
     $.each(data, function(index, item) {
-      $("<p>"+ item.name +"</p></p><img alt=\"lol\" height=\"370\" width=\"370\" src=\"" + item.image + "\"/>").appendTo($("#test"));
+      $("<h1>"+ item.artist.artist + "</h1><p>" + item.name +"</p></p><img alt=\"lol\" height=\"370\" width=\"370\" src=\"" + item.image + "\"/>").appendTo($("#test"));
       var trackList = item.tracks;
       $.each(trackList, function(trackIndex, trackItem) {
         $("<p>" + trackItem.track +"</p>").appendTo($("#test"));
@@ -141,7 +141,7 @@ function fetchAlbum() {
 }
 //
 $(function() {
-  fetch();
+  // fetch();
   fetchAlbum();
 });
 // $(document).ready(function() {
