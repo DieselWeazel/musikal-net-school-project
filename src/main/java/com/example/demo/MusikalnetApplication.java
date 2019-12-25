@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.example.demo.model.*;
 import com.example.demo.model.dto.AlbumDTO;
+import com.example.demo.model.dto.create.AlbumCreateDTO;
 import com.example.demo.repositories.AlbumRepository;
 import com.example.demo.repositories.ArtistRepository;
 import com.example.demo.repositories.GenreRepository;
@@ -217,7 +218,7 @@ public class MusikalnetApplication {
 //    };
 //  }
   @Bean
-  public CommandLineRunner cmdRunnerTestService2(AbstractMusicService<Album, AlbumDTO> albumServiceImpl) {
+  public CommandLineRunner cmdRunnerTestService2(AbstractMusicService<Album, AlbumDTO, AlbumCreateDTO> albumServiceImpl) {
     return args -> {
 
       List<AlbumDTO> filterList = albumServiceImpl.laodByFilter("The ");

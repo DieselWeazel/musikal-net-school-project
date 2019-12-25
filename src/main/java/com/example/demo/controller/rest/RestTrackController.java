@@ -2,6 +2,7 @@ package com.example.demo.controller.rest;
 
 import com.example.demo.model.Track;
 import com.example.demo.model.dto.TrackDTO;
+import com.example.demo.model.dto.simple.SimpleTrackDTO;
 import com.example.demo.service.AbstractMusicService;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,9 +12,9 @@ import java.util.List;
 @RequestMapping("api/track/")
 public class RestTrackController {
 
-    private final AbstractMusicService<Track, TrackDTO> trackService;
+    private final AbstractMusicService<Track, TrackDTO, SimpleTrackDTO> trackService;
 
-    public RestTrackController(AbstractMusicService<Track, TrackDTO> trackService) {
+    public RestTrackController(AbstractMusicService<Track, TrackDTO, SimpleTrackDTO> trackService) {
         this.trackService = trackService;
     }
 
@@ -39,13 +40,14 @@ public class RestTrackController {
 
     @RequestMapping(method = RequestMethod.POST)
     public TrackDTO createTrack(@RequestBody Track track) {
-        System.out.println("got track: " + track.getEntityTitle() + track.getDescription());
-        return trackService.createEntity(track);
+//        return trackService.createEntity(track);
+        return null;
     }
 
     @RequestMapping(value = "id", method = RequestMethod.PUT)
     public TrackDTO updateTrack(@PathVariable Long id, @RequestBody Track track) {
-        return trackService.updateEntity(id, track);
+//        return trackService.updateEntity(id, track);
+        return null;
     }
 
     @RequestMapping(value = "id", method = RequestMethod.DELETE)

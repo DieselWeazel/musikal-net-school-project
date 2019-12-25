@@ -4,6 +4,7 @@ import com.example.demo.model.Genre;
 import com.example.demo.model.dto.GenreDTO;
 import com.example.demo.model.dto.simple.SimpleAlbumOnlyDTO;
 import com.example.demo.model.dto.simple.SimpleArtistOnlyDTO;
+import com.example.demo.model.dto.simple.SimpleGenreDTO;
 import com.example.demo.model.dto.simple.SimpleTrackDTO;
 import com.example.demo.repositories.GenreRepository;
 import com.example.demo.service.childentityservice.LoadChildEntities;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class GenreServiceImpl implements AbstractMusicService<Genre, GenreDTO> {
+public class GenreServiceImpl implements AbstractMusicService<Genre, GenreDTO, SimpleGenreDTO> {
 
     private final GenreRepository genreRepository;
     private final LoadChildEntities<Genre, SimpleArtistOnlyDTO> loadGenreTracksFromArtist;
@@ -57,12 +58,13 @@ public class GenreServiceImpl implements AbstractMusicService<Genre, GenreDTO> {
     }
 
     @Override
-    public GenreDTO createEntity(Genre genre) {
+    public GenreDTO createEntity(SimpleGenreDTO simpleGenreDTO) {
         return null;
     }
 
+
     @Override
-    public GenreDTO updateEntity(Long id, Genre genre) {
+    public GenreDTO updateEntity(Long id, SimpleGenreDTO simpleGenreDTO) {
         return null;
     }
 

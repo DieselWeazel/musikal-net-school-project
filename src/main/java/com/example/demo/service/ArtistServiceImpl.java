@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.model.Artist;
 import com.example.demo.model.dto.ArtistDTO;
+import com.example.demo.model.dto.create.ArtistCreateDTO;
 import com.example.demo.model.dto.simple.SimpleAlbumDTO;
 import com.example.demo.model.dto.simple.SimpleGenreDTO;
 import com.example.demo.repositories.ArtistRepository;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ArtistServiceImpl implements AbstractMusicService<Artist, ArtistDTO> {
+public class ArtistServiceImpl implements AbstractMusicService<Artist, ArtistDTO, ArtistCreateDTO> {
 
     private final ArtistRepository artistRepository;
     private final LoadChildEntities<Artist, SimpleAlbumDTO> loadArtistAlbums;
@@ -47,25 +48,25 @@ public class ArtistServiceImpl implements AbstractMusicService<Artist, ArtistDTO
             return null;
         }
     }
-
     @Transactional
     @Override
-    public ArtistDTO createEntity(Artist artist) {
-        artistRepository.save(artist);
-        return returnArtistDTO(artist);
+    public ArtistDTO createEntity(ArtistCreateDTO artistCreateDTO) {
+        return null;
     }
 
+
     @Transactional
     @Override
-    public ArtistDTO updateEntity(Long id, Artist artist) {
+    public ArtistDTO updateEntity(Long id, ArtistCreateDTO artistCreateDTO) {
         Artist updateArtist = findArtist(id);
-        updateArtist.setEntityTitle(artist.getEntityTitle());
-        updateArtist.setDescription(artist.getDescription());
-        updateArtist.setArtistTrackList(artist.getArtistTrackList());
-        updateArtist.setArtistAlbumList(artist.getArtistAlbumList());
-        updateArtist.setGenre(artist.getGenre());
-        artistRepository.save(updateArtist);
-        return returnArtistDTO(artist);
+//        updateArtist.setEntityTitle(artist.getEntityTitle());
+//        updateArtist.setDescription(artist.getDescription());
+//        updateArtist.setArtistTrackList(artist.getArtistTrackList());
+//        updateArtist.setArtistAlbumList(artist.getArtistAlbumList());
+//        updateArtist.setGenre(artist.getGenre());
+//        artistRepository.save(updateArtist);
+//        return returnArtistDTO(artist);
+        return null;
     }
     @Transactional
     @Override

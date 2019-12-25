@@ -4,18 +4,20 @@ import com.example.demo.model.Album;
 import com.example.demo.model.dto.AlbumDTO;
 import com.example.demo.model.dto.ArtistDTO;
 import com.example.demo.model.dto.TrackDTO;
+import com.example.demo.model.dto.create.AlbumCreateDTO;
+import com.example.demo.model.dto.create.ArtistCreateDTO;
 import com.example.demo.service.AbstractMusicService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("api/album/")
+@RequestMapping("api/album")
 public class RestAlbumController {
 
-    private final AbstractMusicService<Album, AlbumDTO> albumService;
+    private final AbstractMusicService<Album, AlbumDTO, AlbumCreateDTO> albumService;
 
-    public RestAlbumController(AbstractMusicService<Album, AlbumDTO> albumService) {
+    public RestAlbumController(AbstractMusicService<Album, AlbumDTO, AlbumCreateDTO> albumService) {
         this.albumService = albumService;
     }
     @RequestMapping(method = RequestMethod.GET)
@@ -23,7 +25,7 @@ public class RestAlbumController {
         return albumService.loadAll();
     }
 
-    @RequestMapping(value = "id", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public AlbumDTO showAlbum(Album album) {
         return albumService.findEntity(album);
     }
@@ -39,13 +41,13 @@ public class RestAlbumController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public AlbumDTO createAlbum(@RequestBody Album album) {
-        return albumService.createEntity(album);
+    public AlbumDTO createAlbum(@RequestBody AlbumCreateDTO albumCreateDTO) {
+        return albumService.createEntity(albumCreateDTO);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public AlbumDTO updateAlbum(@PathVariable Long id, @RequestBody Album album) {
-        return albumService.updateEntity(id, album);
+    public AlbumDTO updateAlbum(@PathVariable Long id, @RequestBody AlbumCreateDTO albumCreateDTO) {
+        return albumService.updateEntity(id, albumCreateDTO);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

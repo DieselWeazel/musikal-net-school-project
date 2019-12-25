@@ -4,6 +4,9 @@ public class SimpleTrackDTO {
 
     private String track;
 
+    public SimpleTrackDTO() {
+
+    }
     public SimpleTrackDTO(String track) {
         this.track = track;
     }

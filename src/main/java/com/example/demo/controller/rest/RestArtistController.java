@@ -4,6 +4,7 @@ import com.example.demo.model.Album;
 import com.example.demo.model.Artist;
 import com.example.demo.model.dto.AlbumDTO;
 import com.example.demo.model.dto.ArtistDTO;
+import com.example.demo.model.dto.create.ArtistCreateDTO;
 import com.example.demo.service.AbstractMusicService;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,9 +14,9 @@ import java.util.List;
 @RequestMapping("api/artist/")
 public class RestArtistController {
 
-    private final AbstractMusicService<Artist, ArtistDTO> artistService;
+    private final AbstractMusicService<Artist, ArtistDTO, ArtistCreateDTO> artistService;
 
-    public RestArtistController(AbstractMusicService<Artist, ArtistDTO> artistService) {
+    public RestArtistController(AbstractMusicService<Artist, ArtistDTO, ArtistCreateDTO> artistService) {
         this.artistService = artistService;
     }
     @RequestMapping(method = RequestMethod.GET)
@@ -38,12 +39,12 @@ public class RestArtistController {
     }
     @RequestMapping(method = RequestMethod.POST)
     public ArtistDTO createArtist(@RequestBody Artist artist) {
-        return artistService.createEntity(artist);
+        return null;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ArtistDTO updateArtist(@PathVariable Long id, @RequestBody Artist artist) {
-        return artistService.updateEntity(id, artist);
+        return null;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

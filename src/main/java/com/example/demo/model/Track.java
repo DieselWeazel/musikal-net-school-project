@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Table(name = "track")
@@ -13,15 +14,15 @@ import java.util.List;
 })
 public class Track extends MusicEntity {
 //    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "genre_id")
     private Genre genre;
-//    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "album_id")
     private Album album;
 //    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "artist_id")
     private Artist artist;
 
@@ -38,11 +39,20 @@ public class Track extends MusicEntity {
         this.album = album;
     }
 
+    public Track(String entityTitle, String description, Genre genre, Artist artist) {
+        super(entityTitle, description);
+        this.genre = genre;
+        this.artist = artist;
+    }
+
     public Track(String entityTitle, String description, Genre genre, Album album, Artist artist) {
         super(entityTitle, description);
         this.genre = genre;
         this.album = album;
         this.artist = artist;
+    }
+
+    public Track(String track, String correctNumeration, Optional<Genre> byId, Optional<Artist> byId1) {
     }
 
     public Genre getGenre() {

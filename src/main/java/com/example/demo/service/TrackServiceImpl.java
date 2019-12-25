@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TrackServiceImpl implements AbstractMusicService<Track, TrackDTO> {
+public class TrackServiceImpl implements AbstractMusicService<Track, TrackDTO, SimpleTrackDTO> {
 
     private final TrackRepository trackRepository;
     private final LoadChildEntities<Album, SimpleTrackDTO> loadTracksFromAlbum;
@@ -47,23 +47,25 @@ public class TrackServiceImpl implements AbstractMusicService<Track, TrackDTO> {
             return null;
         }
     }
+
     @Transactional
     @Override
-    public TrackDTO createEntity(Track track) {
-        trackRepository.save(track);
-        return returnTrackDTO(track);
+    public TrackDTO createEntity(SimpleTrackDTO simpleTrackDTO) {
+        return null;
     }
+
     @Transactional
     @Override
-    public TrackDTO updateEntity(Long id, Track track) {
+    public TrackDTO updateEntity(Long id, SimpleTrackDTO simpleTrackDTO) {
         Track updateTrack = findTrack(id);
-        updateTrack.setEntityTitle(track.getEntityTitle());
-        updateTrack.setDescription(track.getDescription());
-        updateTrack.setAlbum(track.getAlbum());
-        updateTrack.setArtist(track.getArtist());
-        updateTrack.setGenre(track.getGenre());
-        trackRepository.save(updateTrack);
-        return returnTrackDTO(updateTrack);
+//        updateTrack.setEntityTitle(track.getEntityTitle());
+//        updateTrack.setDescription(track.getDescription());
+//        updateTrack.setAlbum(track.getAlbum());
+//        updateTrack.setArtist(track.getArtist());
+//        updateTrack.setGenre(track.getGenre());
+//        trackRepository.save(updateTrack);
+//        return returnTrackDTO(updateTrack);
+        return null;
     }
     @Transactional
     @Override

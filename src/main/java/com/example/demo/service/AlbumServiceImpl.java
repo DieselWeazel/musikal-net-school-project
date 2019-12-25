@@ -1,31 +1,44 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Album;
+import com.example.demo.model.Artist;
+import com.example.demo.model.Genre;
 import com.example.demo.model.Track;
-import com.example.demo.model.dto.TrackDTO;
+import com.example.demo.model.dto.create.AlbumCreateDTO;
 import com.example.demo.model.dto.AlbumDTO;
 import com.example.demo.model.dto.simple.SimpleArtistOnlyDTO;
 import com.example.demo.model.dto.simple.SimpleGenreDTO;
 import com.example.demo.model.dto.simple.SimpleTrackDTO;
 import com.example.demo.repositories.AlbumRepository;
+import com.example.demo.repositories.ArtistRepository;
+import com.example.demo.repositories.GenreRepository;
 import com.example.demo.service.childentityservice.LoadChildEntities;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
-public class AlbumServiceImpl implements AbstractMusicService<Album, AlbumDTO> {
+public class AlbumServiceImpl implements AbstractMusicService<Album, AlbumDTO, AlbumCreateDTO> {
+
 
     private final AlbumRepository albumRepository;
     private final LoadChildEntities<Album, SimpleTrackDTO> loadTracksFromAlbum;
-    private final AbstractMusicService<Track, TrackDTO> trackService;
+//    private final AbstractMusicService<Track, TrackDTO> trackService;
+    private final AlbumAddTrackService albumAddTrackService;
+    private final GenreRepository genreRepository;
+    private final ArtistRepository artistRepository;
 
-    public AlbumServiceImpl(AlbumRepository albumRepository, LoadChildEntities<Album, SimpleTrackDTO> loadTracksFromAlbum, AbstractMusicService<Track, TrackDTO> trackService) {
+    public AlbumServiceImpl(AlbumRepository albumRepository, LoadChildEntities<Album, SimpleTrackDTO> loadTracksFromAlbum, AlbumAddTrackService albumAddTrackService, GenreRepository genreRepository, ArtistRepository artistRepository) {
         this.albumRepository = albumRepository;
         this.loadTracksFromAlbum = loadTracksFromAlbum;
-        this.trackService = trackService;
+        this.albumAddTrackService = albumAddTrackService;
+        this.genreRepository = genreRepository;
+        this.artistRepository = artistRepository;
     }
 
     @Override
@@ -55,22 +68,28 @@ public class AlbumServiceImpl implements AbstractMusicService<Album, AlbumDTO> {
 
     @Transactional
     @Override
-    public AlbumDTO createEntity(Album album) {
-        albumRepository.save(album);
-        return returnAlbumDTO(album);
+    public AlbumDTO createEntity(AlbumCreateDTO albumCreateDTO) {
+        Genre genre = genreRepository.findById(albumCreateDTO.getGenreId()).orElseThrow(RuntimeException::new);
+        Artist artist = artistRepository.findById(albumCreateDTO.getArtistId()).orElseThrow(RuntimeException::new);
+        log.info("Recieved = {}", albumCreateDTO.toString());
+        Album newAlbum = new Album(albumCreateDTO.getName(), albumCreateDTO.getDescription(), albumAddTrackService.getTracksForAlbum(Arrays.asList(albumCreateDTO.getTracks()), genre, artist), artist, genre, albumCreateDTO.getImage());
+        albumRepository.save(newAlbum);
+        return returnAlbumDTO(newAlbum);
     }
 
     @Transactional
     @Override
-    public AlbumDTO updateEntity(Long id, Album album) {
+    public AlbumDTO updateEntity(Long id, AlbumCreateDTO albumCreateDTO) {
         Album albumEdit = findAlbum(id);
-        albumEdit.setArtist(album.getArtist());
-        albumEdit.setGenre(album.getGenre());
-        albumEdit.setDescription(album.getDescription());
-        albumEdit.setEntityTitle(album.getEntityTitle());
-        albumEdit.setTrackList(album.getTrackList());
+        Genre genre = genreRepository.findById(albumCreateDTO.getGenreId()).orElseThrow(RuntimeException::new);
+        Artist artist = artistRepository.findById(albumCreateDTO.getArtistId()).orElseThrow(RuntimeException::new);
+        albumEdit.setEntityTitle(albumCreateDTO.getName());
+        albumEdit.setDescription(albumCreateDTO.getDescription());
+        albumEdit.getTrackList().clear();
+        albumEdit.getTrackList().addAll((albumAddTrackService.getTracksForAlbum(Arrays.asList(albumCreateDTO.getTracks()), genre, artist)));
+        albumEdit.setImage(albumCreateDTO.getImage());
         albumRepository.save(albumEdit);
-        return returnAlbumDTO(album);
+        return returnAlbumDTO(albumEdit);
     }
 
     @Transactional
@@ -86,7 +105,7 @@ public class AlbumServiceImpl implements AbstractMusicService<Album, AlbumDTO> {
     }
 
     private AlbumDTO returnAlbumDTO(Album album) {
-        return new AlbumDTO(album.getEntityTitle(), album.getDescription(), loadTracksFromAlbum.loadAllChildEntities(album), new SimpleArtistOnlyDTO(album.getArtist().getEntityTitle()),
+        return new AlbumDTO(album.getEntityTitle(), album.getDescription(), album.getId(), loadTracksFromAlbum.loadAllChildEntities(album), new SimpleArtistOnlyDTO(album.getArtist().getEntityTitle()),
                 new SimpleGenreDTO(album.getGenre().getEntityTitle()), album.getImage());
     }
 

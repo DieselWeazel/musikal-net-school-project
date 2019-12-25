@@ -2,6 +2,7 @@ package com.example.demo.controller.rest;
 
 import com.example.demo.model.Genre;
 import com.example.demo.model.dto.GenreDTO;
+import com.example.demo.model.dto.simple.SimpleGenreDTO;
 import com.example.demo.service.AbstractMusicService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,9 +14,9 @@ import java.util.List;
 @RequestMapping("api/genre/")
 public class RestGenreController {
 
-    private final AbstractMusicService<Genre, GenreDTO> genreService;
+    private final AbstractMusicService<Genre, GenreDTO, SimpleGenreDTO> genreService;
 
-    public RestGenreController(AbstractMusicService<Genre, GenreDTO> genreService) {
+    public RestGenreController(AbstractMusicService<Genre, GenreDTO, SimpleGenreDTO> genreService) {
         this.genreService = genreService;
     }
 
