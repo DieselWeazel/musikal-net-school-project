@@ -11,7 +11,7 @@ import java.util.List;
 })
 public class Album extends MusicEntity {
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "album_id")
     private List<Track> trackList;
     @ManyToOne(fetch = FetchType.EAGER)

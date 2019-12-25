@@ -13,7 +13,7 @@ import java.util.Optional;
         @AttributeOverride(name ="entityTitle", column = @Column(name = "track_title"))
 })
 public class Track extends MusicEntity {
-//    @JsonIgnore
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "genre_id")
     private Genre genre;
@@ -21,7 +21,7 @@ public class Track extends MusicEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "album_id")
     private Album album;
-//    @JsonIgnore
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "artist_id")
     private Artist artist;

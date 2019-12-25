@@ -134,27 +134,27 @@ public class MusikalnetApplication {
 //    };
 //  }
 //
-  @Bean
-  public CommandLineRunner commandLineRunnerPresent(ArtistRepository artistRepository,
-                                             AlbumRepository albumRepository,
-                                             TrackRepository trackRepository,
-                                             GenreRepository genreRepository) {
-    return args -> {
-//      Artist artist = artistRepository.findByArtistName("Dr Persist");
-//      System.out.println("Test: " + artist.getEntityTitle());
-
-
-      List<Album> albumFilterList = albumRepository.findByEntityTitleContainingIgnoreCase("Maniac");
-      albumFilterList.forEach(e-> System.out.println("filter result: " + e.getEntityTitle()));
-
-      List<Artist> artistFilterList = artistRepository.findByEntityTitleContainingIgnoreCase("Pa");
-      artistFilterList.forEach(e-> System.out.println("Filtered artist res: " + e.getEntityTitle()));
-
-      List<Track> trackFilterList = trackRepository.findByEntityTitleContainingIgnoreCase("Hardcore");
-
-      trackFilterList.forEach(e-> System.out.println("Filter tracks: " + e.getEntityTitle() + " by: " + e.getArtist().getEntityTitle()));
-    };
-  }
+//  @Bean
+//  public CommandLineRunner commandLineRunnerPresent(ArtistRepository artistRepository,
+//                                             AlbumRepository albumRepository,
+//                                             TrackRepository trackRepository,
+//                                             GenreRepository genreRepository) {
+//    return args -> {
+////      Artist artist = artistRepository.findByArtistName("Dr Persist");
+////      System.out.println("Test: " + artist.getEntityTitle());
+//
+//
+//      List<Album> albumFilterList = albumRepository.findByEntityTitleContainingIgnoreCase("Maniac");
+//      albumFilterList.forEach(e-> System.out.println("filter result: " + e.getEntityTitle()));
+//
+//      List<Artist> artistFilterList = artistRepository.findByEntityTitleContainingIgnoreCase("Pa");
+//      artistFilterList.forEach(e-> System.out.println("Filtered artist res: " + e.getEntityTitle()));
+//
+//      List<Track> trackFilterList = trackRepository.findByEntityTitleContainingIgnoreCase("Hardcore");
+//
+//      trackFilterList.forEach(e-> System.out.println("Filter tracks: " + e.getEntityTitle() + " by: " + e.getArtist().getEntityTitle()));
+//    };
+//  }
 //  @Bean
 //  public CommandLineRunner commandLineRunnerPresent2(ArtistRepository artistRepository,
 //                                                    AlbumRepository albumRepository,
