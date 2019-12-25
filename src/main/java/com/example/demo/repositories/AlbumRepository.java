@@ -12,5 +12,5 @@ public interface AlbumRepository extends JpaRepository<Album, Long> {
     @Query(value = "SELECT * FROM album a WHERE a.album_title = ?1", nativeQuery = true)
     Album findByAlbumName(String album_title);
 
-    List<Album> findByEntityTitleContaining(String albumTitle);
+    List<Album> findByEntityTitleContainingIgnoreCase(String albumTitle);
 }

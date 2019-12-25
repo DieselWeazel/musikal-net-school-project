@@ -2,10 +2,10 @@ package com.example.demo.controller.rest;
 
 import com.example.demo.model.Album;
 import com.example.demo.model.dto.AlbumDTO;
+import com.example.demo.model.dto.ArtistDTO;
+import com.example.demo.model.dto.TrackDTO;
 import com.example.demo.service.AbstractMusicService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,4 +27,30 @@ public class RestAlbumController {
     public AlbumDTO showAlbum(Album album) {
         return albumService.findEntity(album);
     }
+
+    @RequestMapping(value = "filter", method = RequestMethod.POST)
+    public List<AlbumDTO> showAlbumsByFilter(String filter) {
+        return albumService.laodByFilter(filter);
+    }
+
+    @RequestMapping(value = "genre", method = RequestMethod.POST)
+    public List<AlbumDTO> showAlbumsByGenre(String genre) {
+        return albumService.loadByGenre(genre);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public AlbumDTO createAlbum(@RequestBody Album album) {
+        return albumService.createEntity(album);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public AlbumDTO updateAlbum(@PathVariable Long id, @RequestBody Album album) {
+        return albumService.updateEntity(id, album);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public AlbumDTO deleteAlbum(@PathVariable Long id) {
+        return albumService.removeEntity(id);
+    }
+
 }

@@ -7,11 +7,9 @@ import com.example.demo.model.dto.simple.SimpleGenreDTO;
 
 public class TrackDTO extends EntityDTO {
 
-
     private SimpleArtistOnlyDTO artist;
     private SimpleAlbumOnlyDTO album;
     private SimpleGenreDTO genre;
-
 
     public TrackDTO(String entityName, String description, SimpleArtistOnlyDTO artist, SimpleAlbumOnlyDTO album, SimpleGenreDTO genre) {
         super(entityName, description);

@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.model.Album;
 import com.example.demo.model.Track;
-import com.example.demo.model.dto.ArtistDTO;
 import com.example.demo.model.dto.TrackDTO;
 import com.example.demo.model.dto.simple.*;
 import com.example.demo.repositories.TrackRepository;
@@ -31,12 +30,12 @@ public class TrackServiceImpl implements AbstractMusicService<Track, TrackDTO> {
 
     @Override
     public List<TrackDTO> laodByFilter(String filterValue) {
-        return trackRepository.findByEntityTitleContaining(filterValue).stream().map(this::returnTrackDTO).collect(Collectors.toList());
+        return trackRepository.findByEntityTitleContainingIgnoreCase(filterValue).stream().map(this::returnTrackDTO).collect(Collectors.toList());
     }
 
     @Override
     public List<TrackDTO> loadByGenre(String genre) {
-        return trackRepository.findAll().stream().map(this::returnTrackDTO).filter(tack -> tack.getGenre().getGenre().equals(genre)).collect(Collectors.toList());
+        return trackRepository.findAll().stream().map(this::returnTrackDTO).filter(tack -> tack.getGenre().getGenre().equalsIgnoreCase(genre)).collect(Collectors.toList());
     }
 
     @Override

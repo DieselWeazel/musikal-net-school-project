@@ -9,5 +9,5 @@ import java.util.List;
 public interface TrackRepository extends JpaRepository<Track, Long> {
     Track getTrackById(Long id);
 
-    List<Track> findByEntityTitleContaining(String trackName);
+    List<Track> findByEntityTitleContainingIgnoreCase(String trackName);
 }

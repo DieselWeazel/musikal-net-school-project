@@ -2,13 +2,11 @@ package com.example.demo;
 
 import com.example.demo.model.*;
 import com.example.demo.model.dto.AlbumDTO;
-import com.example.demo.model.dto.ArtistDTO;
-import com.example.demo.model.dto.TrackDTO;
 import com.example.demo.repositories.AlbumRepository;
 import com.example.demo.repositories.ArtistRepository;
 import com.example.demo.repositories.GenreRepository;
 import com.example.demo.repositories.TrackRepository;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import com.example.demo.service.AbstractMusicService;
@@ -145,13 +143,13 @@ public class MusikalnetApplication {
 //      System.out.println("Test: " + artist.getEntityTitle());
 
 
-      List<Album> albumFilterList = albumRepository.findByEntityTitleContaining("Maniac");
+      List<Album> albumFilterList = albumRepository.findByEntityTitleContainingIgnoreCase("Maniac");
       albumFilterList.forEach(e-> System.out.println("filter result: " + e.getEntityTitle()));
 
-      List<Artist> artistFilterList = artistRepository.findByEntityTitleContaining("Pa");
+      List<Artist> artistFilterList = artistRepository.findByEntityTitleContainingIgnoreCase("Pa");
       artistFilterList.forEach(e-> System.out.println("Filtered artist res: " + e.getEntityTitle()));
 
-      List<Track> trackFilterList = trackRepository.findByEntityTitleContaining("Hardcore");
+      List<Track> trackFilterList = trackRepository.findByEntityTitleContainingIgnoreCase("Hardcore");
 
       trackFilterList.forEach(e-> System.out.println("Filter tracks: " + e.getEntityTitle() + " by: " + e.getArtist().getEntityTitle()));
     };

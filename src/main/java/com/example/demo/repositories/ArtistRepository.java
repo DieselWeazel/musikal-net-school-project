@@ -12,5 +12,5 @@ public interface ArtistRepository extends JpaRepository<Artist, Long> {
     @Query(value = "SELECT * FROM Artist a WHERE a.artist_title = ?1", nativeQuery = true)
     Artist findByArtistName(String artist_title);
 
-    List<Artist> findByEntityTitleContaining(String artistName);
+    List<Artist> findByEntityTitleContainingIgnoreCase(String artistName);
 }

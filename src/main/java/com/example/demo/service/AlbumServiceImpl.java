@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Album;
+import com.example.demo.model.Track;
 import com.example.demo.model.dto.TrackDTO;
-import com.example.demo.model.dto.simple.SimpleAlbumOnlyDTO;
 import com.example.demo.model.dto.AlbumDTO;
 import com.example.demo.model.dto.simple.SimpleArtistOnlyDTO;
 import com.example.demo.model.dto.simple.SimpleGenreDTO;
@@ -20,10 +20,12 @@ public class AlbumServiceImpl implements AbstractMusicService<Album, AlbumDTO> {
 
     private final AlbumRepository albumRepository;
     private final LoadChildEntities<Album, SimpleTrackDTO> loadTracksFromAlbum;
+    private final AbstractMusicService<Track, TrackDTO> trackService;
 
-    public AlbumServiceImpl(AlbumRepository albumRepository, LoadChildEntities<Album, SimpleTrackDTO> loadTracksFromAlbum) {
+    public AlbumServiceImpl(AlbumRepository albumRepository, LoadChildEntities<Album, SimpleTrackDTO> loadTracksFromAlbum, AbstractMusicService<Track, TrackDTO> trackService) {
         this.albumRepository = albumRepository;
         this.loadTracksFromAlbum = loadTracksFromAlbum;
+        this.trackService = trackService;
     }
 
     @Override
@@ -33,12 +35,12 @@ public class AlbumServiceImpl implements AbstractMusicService<Album, AlbumDTO> {
 
     @Override
     public List<AlbumDTO> laodByFilter(String filterValue) {
-        return albumRepository.findByEntityTitleContaining(filterValue).stream().map(this::returnAlbumDTO).collect(Collectors.toList());
+        return albumRepository.findByEntityTitleContainingIgnoreCase(filterValue).stream().map(this::returnAlbumDTO).collect(Collectors.toList());
     }
 
     @Override
     public List<AlbumDTO> loadByGenre(String genre) {
-        return albumRepository.findAll().stream().map(this::returnAlbumDTO).filter(album -> album.getGenre().getGenre().equals(genre)).collect(Collectors.toList());
+        return albumRepository.findAll().stream().map(this::returnAlbumDTO).filter(album -> album.getGenre().getGenre().equalsIgnoreCase(genre)).collect(Collectors.toList());
     }
 
     @Override
