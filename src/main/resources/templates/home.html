@@ -1,44 +1,142 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"  lang="en">
+<!DOCTYPE html>
+<html lang="sv" xmlns:th="http://www.thymeleaf.org">
+<!-- HEAD -->
 <head>
-    <meta charset="UTF-8">
-    <title>Calculator - Jonathan Harr</title>
+    <!-- CSS -->
+    <!--        <link rel="stylesheet" href="../static/css/style.css" />-->
+    <!--        <script src="../static/headerScript.js"></script>-->
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
     <script src="/webjars/jquery/jquery.min.js"></script>
-<!--    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />-->
-    <script th:src="@{fetch.js}" type="module"></script>
-<!--    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">-->
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+    <script th:src="@{headerScript.js}" type="module"></script>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi"/>
+    <meta charset="UTF-8"/>
+    <!-- TODO: JS change title -->
+    <title>MusikalNet - CHANGE ME</title>
+
+    <!-- JAVASCRIPT MODULE -->
+
 </head>
-<script th:inline="javascript">
 
-    $(document).ready(function (){
-        console.log("hello?");
-    })
-</script>
+<!-- BODY -->
+
 <body>
-
-<header></header>
-
-<!--  Video Background  -->
-<div id="videoDivBackground"></div>
-
+<!-- CONTAINER DIV -->
 <div id="container">
-    <div id="calculatorDivWrapper">
-        <div id="calculatorDiv">
-            <h1>Calculator Application</h1>
-            <img alt="lol" height="370" width="370" src="img/album/promo-authentic.jpg"/>
-            <!-- Form Ends -->
-            <div id="test">
-                
-            </div>
-        </div>
-        <!-- calculatorDiv ends-->
-    </div>
 
-    <footer id = "footer" >
-        <p>Coded by some junior Coder. (Launch me)</p>
+    <!-- HEADDER, controlled with Fragment -->
+    <header>
+    </header>
+    <!-- HEAD & NAV END -->
+
+    <!-- MAIN -->
+    <main>
+
+        <!-- mainDiv -->
+        <div class="mainDiv" id="mainDivId">
+            <!-- divsWithContent -->
+            <div class="divsWithContent">
+                <!-- Actual Content -->
+                <div class="actualContent">
+
+                    <div class="divsWithText">
+                        <!-- Section -->
+                        <section>
+                            <h2>Rubrik</h2>
+                            <h3>Detaljer</h3>
+                            <h4>2019-12-02</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+                                nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,
+                                sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec,
+                                vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
+                                Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus
+                                elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor
+                                eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis,
+                                feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.
+                                Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.
+                                Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam
+                                semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel,
+                                luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec
+                                vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget
+                                eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales
+                                sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, </p>
+                            <h3>Annan Rubrik!</h3>
+                            <h4>2018-02-03</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+                                nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,
+                                sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec,
+                                vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
+                                Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus
+                                elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor
+                                eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis,
+                                feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.
+                                Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.
+                                Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam
+                                semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel,
+                                luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec
+                                vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget
+                                eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales
+                                sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, </p>
+
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+                                nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis,
+                                sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec,
+                                vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
+                                Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus
+                                elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor
+                                eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis,
+                                feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.
+                                Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.
+                                Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam
+                                semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel,
+                                luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec
+                                vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget
+                                eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales
+                                sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, </p>
+
+                        </section>
+                    </div>
+                        <div class="divsWithText">
+                            <!-- Section -->
+                            <section>
+                                <h2>Fortsättning</h2>
+                                <h3>Detaljer</h3>
+                                <h4>2019-12-02</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                    dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+                                    nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
+                                    quis,
+                                    sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec,
+                                    vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+                                    justo.</p>
+
+                            </section>
+
+                        </div>
+                        <!-- Divs with Text End -->
+                    </div>
+                    <!-- Actual Content End -->
+                </div>
+                <!-- Divs With Content End -->
+                <!-- MainDiv End -->
+
+            </div>
+
+    </main>
+    <!-- MAIN END -->
+
+
+    <!-- FOOTER -->
+    <footer id="footer">
+
     </footer>
 
 </div>
 </body>
+
+</html>

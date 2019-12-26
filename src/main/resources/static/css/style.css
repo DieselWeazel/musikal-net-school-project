@@ -1,0 +1,512 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* END OF STYLE RESET */
+
+
+
+
+/* BODY */
+body {
+    background-color: black;
+    background-image: url('../img/layout/background2.jpg');
+}
+/*CONTAINER*/
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: auto;
+    background-color: #48494a;
+}
+
+/*MAIN DIV mainDiv*/
+#mainDivId {
+    flex: 1;
+    flex-direction: column;
+}
+
+/* HEADER */
+
+header {
+    height: 370px;
+    margin: 0 0 1em 0;
+    box-shadow: inset 0 -7px 9px -7px #48494a;
+}
+
+/* HEADER DIV */
+.headerDiv {
+    flex: 1;
+    padding: 0 0 270px 0;
+}
+
+
+.navDiv {
+    flex: 1;
+    overflow: hidden;
+}
+
+/*NAV*/
+.navDiv a {
+    background-color: black;
+    border-image-slice: 1 1 0 0;
+    transform-origin: left bottom;
+    text-transform: uppercase;
+}
+
+/*Hover/Visit, etc*/
+.navDiv a:link {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+.navDiv a:visited {
+    color: #fff;
+}
+
+.navDiv a:focus{
+    color: rgb(127, 127, 177);
+}
+
+.navDiv a:hover {
+    color: rgb(138, 184, 240);
+}
+
+.navDiv a:active {
+    color: rgb(58, 82, 114);
+}
+
+/*Main Text / Article */
+article {
+    padding: 10px;
+}
+
+.divsWithContent {
+	border-bottom: 2px black;
+	border-style: dashed;
+}
+
+
+.divsWithContent {
+    background-image: linear-gradient(to right, #48494a, #48494a 5%, #2b3238 10%, #2b3238 90%, #48494a 95%, #48494a);
+    padding: 1em 0 0 0;
+}
+
+/* ACTUAL Content, holding the actual text etc */
+.actualContent {
+	background: #383838;
+	/*width: 80%;*/
+    /*padding: 10em;*/
+    margin: 0 auto;
+}
+/* DIVS WITH TEXT*/
+/*.divsWithText {*/
+/*    padding: 0 2em;*/
+/*}*/
+/* Images displayed on one row */
+.img-div-row {
+	margin: 2.3em 0 1em 0;
+	text-align: center;
+}
+.img-div-row img {margin: 0 0.4em;}
+
+
+/*TEXT PROPERTIES*/
+h1 {
+    font-family: 'PT Sans', sans-serif;
+    color: #d7d7d7;
+    font-size: 5em;
+}
+h2 {
+    font-size: 2em;
+}
+h3 {
+    font-size: 1.5em;
+}
+h4 {
+    font-size: 1.2em;
+}
+/*MAIN TEXT, belong to actualContent*/
+.actualContent h2 {
+    font-family: 'PT Sans', sans-serif;
+    color: #d7d7d7;
+    margin: 0.5em 0 0.2em 0;
+}
+.actualContent h3 {
+    font-family: 'PT Sans', sans-serif;
+    color: #d7d7d7;
+    margin: 0 0 0 0;
+}
+.actualContent h4 {
+    font-family: 'PT Sans', sans-serif;
+    color: #d7d7d7;
+    margin: 0 0 0.3em 0;
+}
+.actualContent p {
+    font-family: 'Quicksand', sans-serif;
+    color: #d7d7d7;
+    font-size: 1.4em;
+    padding: 0 0 0.5em 0;
+}
+
+.banner1 {
+    background-image: linear-gradient(to bottom, transparent 90%, #48494a 100%),
+    url('../img/layout/banner/banner_1.jpg');
+    background-clip: border-box;
+    background-origin: border-box;
+    background-size: cover;
+    /*background-position: right 750px bottom;*/
+}
+.banner2 {
+    background-image: linear-gradient(to bottom, transparent 90%, #48494a 100%),
+    url('../img/layout/banner/banner_2.jpg');
+    background-clip: border-box;
+    background-origin: border-box;
+    background-size: cover;
+    /*background-position: right 750px bottom;*/
+}
+.banner3 {
+    background-image: linear-gradient(to bottom, transparent 90%, #48494a 100%),
+    url('../img/layout/banner/banner_3.jpg');
+    background-clip: border-box;
+    background-origin: border-box;
+    background-size: cover;
+    /*background-position: right 0 bottom;*/
+}
+.banner4 {
+    background-image: linear-gradient(to bottom, transparent 90%, #48494a 100%),
+    url('../img/layout/banner/banner_4.jpg');
+    background-clip: border-box;
+    background-origin: border-box;
+    background-size: cover;
+}
+.banner5 {
+    background-image: linear-gradient(to bottom, transparent 90%, #48494a 100%),
+    url('../img/layout/banner/banner_5.jpg');
+    background-clip: border-box;
+    background-origin: border-box;
+    background-size: cover;
+    /*background-position: right 0 bottom;*/
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 1em;
+}
+
+/*MEDIA QUERIES*/
+@media screen and (min-width: 500px){
+
+    /*CONTAINER*/
+    #container {
+        width: 100%;
+    }
+
+    /*HEADER*/
+    header {
+        padding: 10px 10px;
+    }
+    /*DIVS WITH CONTENT, MAIN TEXT, MAIN STUFF*/
+    .divsWithContent {
+        padding: 10px 10px;
+    }
+}
+
+
+@media screen and (max-width: 600px){
+
+}
+@media screen and (min-width: 715px) {
+    /*HEADER*/
+    header {
+        padding: 10px 30px;
+    }
+    /*DIVS WITH CONTENT, MAIN TEXT, MAIN STUFF*/
+    .divsWithContent {
+        padding: 10px 30px;
+    }
+}
+/*MAX 849, MENU TOGGLE CSS FUNCTIONALITIES, controlled with JS */
+@media screen and (max-width: 849px) {
+    .navDiv a:not(:first-child) {
+        display: none;
+    }
+
+    .navDiv {
+        padding: .5em 1em;
+    }
+
+    .navDiv a.openLinks {
+        float: right;
+        display: block;
+    }
+    /*Hover/Visit, etc*/
+    .navDiv a.openLinks {
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+    }
+    .navDiv a.openLinks:hover {
+        color: rgb(138, 184, 240);
+    }
+
+}
+@media screen and (max-width: 849px) {
+
+    /*Defined the smaller size of padding here*/
+    .divsWithText {
+        padding: 0 1em;
+    }
+
+    /* Header IMG change centering */
+    .banner1 {
+        background-position: right 750px bottom;
+    }
+    .banner2 {
+        background-position: right 750px bottom;
+    }
+    .banner3 {
+        background-position: right 0 bottom;
+    }
+    .banner5 {
+        background-position: right 0 bottom;
+    }
+    .navDiv {
+        background-color: black;
+    }
+    /*NAVIGATION, WHEN TOGGLES to MENU OPEN, is set to NavDivResponse. */
+    .navDivResponse {
+        position: relative;
+    }
+    /*NavDiv response a OPENLINKS button, menu toggler */
+    .navDivResponse a.openLinks {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .navDivResponse a.openLinks {
+        float: right;
+        display: block;
+    }
+    .navDivResponse a.openLinks {
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+    }
+    .navDivResponse a.openLinks:hover {
+        color: rgb(138, 184, 240);
+    }
+    /*All other NavDiv Response Buttons*/
+    .navDivResponse a {
+        float: none;
+        display: block;
+        text-align: left;
+        background-color: black;
+        border: 1px solid;
+        border-image-slice: 1 1 0 0;
+        padding: .5em 1em;
+        transform-origin: left bottom;
+        text-transform: uppercase;
+    }
+    /* Hover/Visit, etc */
+    .navDivResponse a:link {
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+    }
+    .navDivResponse a:visited {
+        color: #fff;
+    }
+
+    .navDivResponse a:focus{
+        color: rgb(127, 127, 177);
+    }
+
+    .navDivResponse a:hover {
+        color: rgb(138, 184, 240);
+    }
+
+    .navDivResponse a:active {
+        color: rgb(58, 82, 114);
+    }
+
+    /* Because my Menu is so tall, I've changed the classname of the mainDiv to give it a margin*/
+    .mainDivResponse {
+        margin: 10em 0 0 0;
+    }
+
+}
+
+/* NONMOBILE / DESKTOP */
+/* NO TOGGLE MENU FEATURE */
+@media screen and (min-width: 850px){
+
+    /*Defines the padding a little more*/
+    .divsWithText {
+        padding: 0 1.5em;
+    }
+
+    /*NAV, changes to regular navigation bar*/
+    .navDiv a {
+        font-size: 0.9em;
+        letter-spacing: .2em;
+        padding: .5em 1em;
+        border: 1px solid;
+    }
+    .navDiv {
+        display: flex;
+        justify-content: center;
+    }
+    .navDiv.response a.openLinks {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    /*HEADER*/
+    header {
+        padding: 10px 70px;
+    }
+    /*DIVS WITH CONTENT, MAIN TEXT, MAIN STUFF*/
+
+}
+/*ViewPort adjusts to the minimal viewports*/
+@media screen and(max-width: 999px) {
+    .actualContent {
+        width: 100%;
+    }
+    .divsWithText {
+        padding: 0 1em;
+    }
+}
+
+/* ViewPort that has minimum width settings for Divs, changes to fit more accordingly*/
+@media screen and (min-width: 1000px){
+
+    /*CONTAINER*/
+    #container {
+        width: 96%;
+    }
+
+    .divsWithContent {
+        background-image: linear-gradient(to right, #48494a, #48494a 5%, #2b3238 10%, #2b3238 90%, #48494a 95%, #48494a);
+        padding: 1em 0 0 0;
+        width: 100%;
+        position: relative;
+    }
+
+    .actualContent {
+        position: relative;
+        top: -0.6em;
+        width: 98%;
+    }
+    .divsWithText {
+        padding: 0 2em;
+    }
+     /*Images displayed on one row*/
+    .img-div-row {
+        margin: 2.3em 0 1em 0;
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+    }
+    .img-div-row img {margin: 0 0.4em;}
+
+    /*NAV*/
+    .navDiv a {
+        margin: 0.3em;
+    }
+
+}
+
+@media screen and (min-width: 1150px){
+
+    /*CONTAINER*/
+    #container {
+        width: 93%;
+    }
+}
+
+
+@media screen and (min-width: 1300px){
+    /*CONTAINER*/
+    #container {
+        width: 95%;
+    }
+}
+
+@media screen and (min-width: 1500px){
+
+    /*CONTAINER*/
+    #container {
+        width: 90%;
+    }
+}
+
+@media screen and (min-width: 1500px){
+
+    /*CONTAINER*/
+    #container {
+        width: 85%;
+    }
+
+    /* Images displayed on one row */
+    .img-div-row {
+        margin: 2.3em 0 1em 0;
+        flex-direction: row;
+        text-align: center;
+        position: relative;
+    }
+}
+
+@media screen and (min-width: 1700px){
+
+    /* NAV */
+    .navDiv a {
+        font-size: 1.2em;
+        letter-spacing: .1em;
+    }
+
+    /*CONTAINER*/
+    #container {
+        width: 1500px;
+    }
+}

@@ -13,4 +13,12 @@ public class ViewController {
     public String index(Model model) {
         return "home";
     }
+    @RequestMapping(value="home", method = RequestMethod.GET)
+    public String home(Model model) {
+        return "home";
+    }
+    @RequestMapping(value="fetch", method = RequestMethod.GET)
+    public String fetch(Model model) {
+        return "fetch";
+    }
 }
