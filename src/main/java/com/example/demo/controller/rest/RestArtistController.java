@@ -29,8 +29,8 @@ public class RestArtistController {
     }
 
     @RequestMapping(value = "/filter", method = RequestMethod.POST)
-    public List<ArtistDTO> showAlbumsByFilter(String genre) {
-        return artistService.laodByFilter(genre);
+    public List<ArtistDTO> showAlbumsByFilter(String filter) {
+        return artistService.laodByFilter(filter);
     }
 
     @RequestMapping(value = "/genre", method = RequestMethod.POST)
@@ -38,13 +38,13 @@ public class RestArtistController {
         return artistService.loadByGenre(genre);
     }
     @RequestMapping(method = RequestMethod.POST)
-    public ArtistDTO createArtist(@RequestBody Artist artist) {
-        return null;
+    public ArtistDTO createArtist(@RequestBody ArtistCreateDTO artistCreateDTO) {
+        return artistService.createEntity(artistCreateDTO);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ArtistDTO updateArtist(@PathVariable Long id, @RequestBody Artist artist) {
-        return null;
+    public ArtistDTO updateArtist(@PathVariable Long id, @RequestBody ArtistCreateDTO artistCreateDTO) {
+        return artistService.updateEntity(id, artistCreateDTO);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

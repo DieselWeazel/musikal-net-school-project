@@ -9,6 +9,8 @@ http://localhost:8080/api/track/2
 // osäker genre och ev Track
 http://localhost:8080/api/genre/id?genre=1
 
+
+ALLA ALBUM METODER FUNGERAR!
 POST
 GENRE
 http://localhost:8080/api/album/genre?genre=Hardcore
@@ -18,16 +20,51 @@ http://localhost:8080/api/album/filter?filter=The
 DELETE, PUT OCH GET
 DELETE ALBUM / PUT (update) / GET one album
 http://localhost:8080/api/album/{id}
+
+
+
+POST ARTIST
+{
+	"entityName":"JonteHarr",
+	"description":"Derp",
+	"genreId":"1",
+	"image":"https://a.wattpad.com/cover/115975682-352-k961827.jpg"
+}
+
+
 POST ALBUM
 http://localhost:8080/api/album/
 {
-	"entityName":"This is my style",
+	"entityName":"MITT ALBUM!",
 	"description":"Lol",
-	"artistId":"1",
+	"artistId":"13",
 	"genreId":"1",
 	"tracks":[
 		{"track":"This is my style"},
-		{"track":"New style"}
+		{"track":"HArrtrack"},
+		{"track":"This is my style"},
+		{"track":"Derp"},
+		{"track":"This is my style"},
+		{"track":"HArrtrack"},
+		{"track":"Wowaweawaq"},
+		{"track":"Derp"},
+		{"track":"This is my style"},
+		{"track":"tjoho"},
+		{"track":"This is my style"},
+		{"track":"Derp"},
+		{"track":"This is my style"},
+		{"track":"HArrtrack"},
+		{"track":"This is my style"},
+		{"track":"Derp"}
 		],
-		"image":"img/album/sprinky-this-is-my-style.jpg"
+		"image":"https://2.bp.blogspot.com/-zaM1wAzsWSI/TkvO8u_nKRI/AAAAAAAADog/r9_kaM_zDf0/s1600/asna-2.jpg"
+}
+
+POST TRACK -- lite broken pga att den inte sätter track 01 osv nu.
+{
+	"entityName":"track",
+	"description":"Derp",
+	"artistId":"1",
+	"genreId":"1",
+	"albumId":"1"
 }

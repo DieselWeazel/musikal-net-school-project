@@ -7,15 +7,25 @@ import com.example.demo.model.dto.simple.SimpleGenreDTO;
 
 public class TrackDTO extends EntityDTO {
 
+    private Long trackId;
     private SimpleArtistOnlyDTO artist;
     private SimpleAlbumOnlyDTO album;
     private SimpleGenreDTO genre;
 
-    public TrackDTO(String entityName, String description, SimpleArtistOnlyDTO artist, SimpleAlbumOnlyDTO album, SimpleGenreDTO genre) {
+    public TrackDTO(String entityName, String description, Long trackId, SimpleArtistOnlyDTO artist, SimpleAlbumOnlyDTO album, SimpleGenreDTO genre) {
         super(entityName, description);
+        this.trackId = trackId;
         this.artist = artist;
         this.album = album;
         this.genre = genre;
+    }
+
+    public Long getTrackId() {
+        return trackId;
+    }
+
+    public void setTrackId(Long trackId) {
+        this.trackId = trackId;
     }
 
     public SimpleAlbumOnlyDTO getAlbum() {

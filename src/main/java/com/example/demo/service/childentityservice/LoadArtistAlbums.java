@@ -4,11 +4,13 @@ import com.example.demo.model.Album;
 import com.example.demo.model.Artist;
 import com.example.demo.model.dto.simple.SimpleAlbumDTO;
 import com.example.demo.model.dto.simple.SimpleTrackDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class LoadArtistAlbums implements LoadChildEntities<Artist, SimpleAlbumDTO> {
     private final LoadChildEntities<Album, SimpleTrackDTO> loadTracksFromAlbum;
@@ -19,6 +21,7 @@ public class LoadArtistAlbums implements LoadChildEntities<Artist, SimpleAlbumDT
 
     @Override
     public List<SimpleAlbumDTO> loadAllChildEntities(Artist artist) {
+        log.info("Artist albumList size = {}", artist.getArtistAlbumList().size());
         return artist.getArtistAlbumList().stream().map(
                 album -> new SimpleAlbumDTO(album.getEntityTitle(), loadTracksFromAlbum.loadAllChildEntities(album))
         ).collect(Collectors.toList());

@@ -1,26 +1,36 @@
 package com.example.demo.service;
 
+import com.example.demo.model.Album;
 import com.example.demo.model.Artist;
+import com.example.demo.model.Genre;
 import com.example.demo.model.dto.ArtistDTO;
 import com.example.demo.model.dto.create.ArtistCreateDTO;
 import com.example.demo.model.dto.simple.SimpleAlbumDTO;
 import com.example.demo.model.dto.simple.SimpleGenreDTO;
+import com.example.demo.repositories.AlbumRepository;
 import com.example.demo.repositories.ArtistRepository;
+import com.example.demo.repositories.GenreRepository;
 import com.example.demo.service.childentityservice.LoadChildEntities;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class ArtistServiceImpl implements AbstractMusicService<Artist, ArtistDTO, ArtistCreateDTO> {
 
     private final ArtistRepository artistRepository;
+    private final GenreRepository genreRepository;
+    private final AlbumRepository albumRepository;
     private final LoadChildEntities<Artist, SimpleAlbumDTO> loadArtistAlbums;
 
-    public ArtistServiceImpl(ArtistRepository artistRepository, LoadChildEntities<Artist, SimpleAlbumDTO> loadArtistAlbums) {
+    public ArtistServiceImpl(ArtistRepository artistRepository, GenreRepository genreRepository, AlbumRepository albumRepository, LoadChildEntities<Artist, SimpleAlbumDTO> loadArtistAlbums) {
         this.artistRepository = artistRepository;
+        this.genreRepository = genreRepository;
+        this.albumRepository = albumRepository;
         this.loadArtistAlbums = loadArtistAlbums;
     }
 
@@ -51,7 +61,11 @@ public class ArtistServiceImpl implements AbstractMusicService<Artist, ArtistDTO
     @Transactional
     @Override
     public ArtistDTO createEntity(ArtistCreateDTO artistCreateDTO) {
-        return null;
+        Genre genre = genreRepository.findById(artistCreateDTO.getGenreId()).orElseThrow(RuntimeException::new);
+        log.info("Recieved = {}", artistCreateDTO.toString());
+        Artist newArtist = new Artist(artistCreateDTO.getName(), artistCreateDTO.getDescription(), genre, artistCreateDTO.getImage());
+        artistRepository.save(newArtist);
+        return new ArtistDTO(artistCreateDTO.getName(), artistCreateDTO.getDescription(), newArtist.getId(), new SimpleGenreDTO(genre.getEntityTitle()), artistCreateDTO.getImage());
     }
 
 
@@ -59,19 +73,24 @@ public class ArtistServiceImpl implements AbstractMusicService<Artist, ArtistDTO
     @Override
     public ArtistDTO updateEntity(Long id, ArtistCreateDTO artistCreateDTO) {
         Artist updateArtist = findArtist(id);
-//        updateArtist.setEntityTitle(artist.getEntityTitle());
-//        updateArtist.setDescription(artist.getDescription());
-//        updateArtist.setArtistTrackList(artist.getArtistTrackList());
-//        updateArtist.setArtistAlbumList(artist.getArtistAlbumList());
-//        updateArtist.setGenre(artist.getGenre());
-//        artistRepository.save(updateArtist);
-//        return returnArtistDTO(artist);
-        return null;
+        updateArtist.setEntityTitle(artistCreateDTO.getName());
+        updateArtist.setDescription(artistCreateDTO.getDescription());
+        artistRepository.save(updateArtist);
+        return returnArtistDTO(updateArtist);
     }
+
     @Transactional
     @Override
     public ArtistDTO removeEntity(Long id) {
         Artist deleteArtist = findArtist(id);
+        for (Album a : deleteArtist.getArtistAlbumList()) {
+            albumRepository.delete(a);
+        }
+
+        Genre parentGenre = deleteArtist.getGenre();
+        parentGenre.getArtistList().remove(deleteArtist);
+        genreRepository.save(parentGenre);
+
         artistRepository.delete(deleteArtist);
         return returnArtistDTO(deleteArtist);
     }
@@ -81,7 +100,7 @@ public class ArtistServiceImpl implements AbstractMusicService<Artist, ArtistDTO
     }
 
     private ArtistDTO returnArtistDTO(Artist artist) {
-        return new ArtistDTO(artist.getEntityTitle(), artist.getDescription(),
+        return new ArtistDTO(artist.getEntityTitle(), artist.getDescription(), artist.getId(),
                 loadArtistAlbums.loadAllChildEntities(artist), new SimpleGenreDTO(artist.getGenre().getEntityTitle()),
                 artist.getImage()
         );

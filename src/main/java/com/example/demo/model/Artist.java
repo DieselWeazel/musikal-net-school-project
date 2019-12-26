@@ -11,7 +11,7 @@ import java.util.List;
 })
 public class Artist extends MusicEntity {
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "artist_id")
     private List<Album> artistAlbumList;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -28,6 +28,12 @@ public class Artist extends MusicEntity {
 
     public Artist(String entityTitle, String description) {
         super(entityTitle, description);
+    }
+
+    public Artist(String entityTitle, String description, Genre genre, String image) {
+        super(entityTitle, description);
+        this.genre = genre;
+        this.image = image;
     }
 
     public Artist(String entityTitle, String description,

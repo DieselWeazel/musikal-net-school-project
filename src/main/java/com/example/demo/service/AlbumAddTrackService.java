@@ -27,6 +27,6 @@ public class AlbumAddTrackService {
     }
 
     private String createCorrectNumeration(int index) {
-        return (index >= 9) ? "0" + (index +1) : String.valueOf((index+1));
+        return (index < 9) ? "Track 0" + (index +1) : "Track " + (index+1);
     }
 }
