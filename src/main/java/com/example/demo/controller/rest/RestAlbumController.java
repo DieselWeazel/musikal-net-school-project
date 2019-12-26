@@ -30,12 +30,12 @@ public class RestAlbumController {
         return albumService.findEntity(album);
     }
 
-    @RequestMapping(value = "filter", method = RequestMethod.POST)
+    @RequestMapping(value = "/filter", method = RequestMethod.POST)
     public List<AlbumDTO> showAlbumsByFilter(String filter) {
         return albumService.laodByFilter(filter);
     }
 
-    @RequestMapping(value = "genre", method = RequestMethod.POST)
+    @RequestMapping(value = "/genre", method = RequestMethod.POST)
     public List<AlbumDTO> showAlbumsByGenre(String genre) {
         return albumService.loadByGenre(genre);
     }

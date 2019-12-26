@@ -3,7 +3,31 @@ http://localhost:8080/api/track/
 http://localhost:8080/api/album/
 http://localhost:8080/api/genre/
 
-http://localhost:8080/api/artist/id?artist=1
-http://localhost:8080/api/album/id?album=1
-http://localhost:8080/api/track/id?track=1
+http://localhost:8080/api/artist/2
+http://localhost:8080/api/album/2
+http://localhost:8080/api/track/2
+// osäker genre och ev Track
 http://localhost:8080/api/genre/id?genre=1
+
+POST
+GENRE
+http://localhost:8080/api/album/genre?genre=Hardcore
+FILTER
+http://localhost:8080/api/album/filter?filter=The
+
+DELETE, PUT OCH GET
+DELETE ALBUM / PUT (update) / GET one album
+http://localhost:8080/api/album/{id}
+POST ALBUM
+http://localhost:8080/api/album/
+{
+	"entityName":"This is my style",
+	"description":"Lol",
+	"artistId":"1",
+	"genreId":"1",
+	"tracks":[
+		{"track":"This is my style"},
+		{"track":"New style"}
+		],
+		"image":"img/album/sprinky-this-is-my-style.jpg"
+}

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/artist/")
+@RequestMapping("api/artist")
 public class RestArtistController {
 
     private final AbstractMusicService<Artist, ArtistDTO, ArtistCreateDTO> artistService;
@@ -23,17 +23,17 @@ public class RestArtistController {
     public List<ArtistDTO> showAllArtists() {
         return artistService.loadAll();
     }
-    @RequestMapping(value = "id", method = RequestMethod.GET)
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public ArtistDTO showArtist(Artist artist) {
         return artistService.findEntity(artist);
     }
 
-    @RequestMapping(value = "filter", method = RequestMethod.POST)
+    @RequestMapping(value = "/filter", method = RequestMethod.POST)
     public List<ArtistDTO> showAlbumsByFilter(String genre) {
         return artistService.laodByFilter(genre);
     }
 
-    @RequestMapping(value = "genre", method = RequestMethod.POST)
+    @RequestMapping(value = "/genre", method = RequestMethod.POST)
     public List<ArtistDTO> showArtistsByGenre(String genre) {
         return artistService.loadByGenre(genre);
     }

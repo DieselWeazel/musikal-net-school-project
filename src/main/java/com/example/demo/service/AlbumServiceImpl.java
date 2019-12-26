@@ -97,6 +97,18 @@ public class AlbumServiceImpl implements AbstractMusicService<Album, AlbumDTO, A
     public AlbumDTO removeEntity(Long id) {
         Album deleteAlbum = findAlbum(id);
         deleteAlbum.getTrackList().clear();
+
+        // Removes Album from Artist
+        Artist parentArtist = deleteAlbum.getArtist();
+        parentArtist.getArtistAlbumList().remove(deleteAlbum);
+        artistRepository.save(parentArtist);
+
+        // Removes Album from Genre
+        Genre parentGenre = deleteAlbum.getGenre();
+        parentGenre.getAlbumList().remove(deleteAlbum);
+        genreRepository.save(parentGenre);
+
+        // Removes Album completely
         albumRepository.delete(deleteAlbum);
         return returnAlbumDTO(deleteAlbum);
     }
