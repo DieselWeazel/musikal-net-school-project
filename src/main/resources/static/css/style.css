@@ -139,10 +139,7 @@ article {
     /*padding: 10em;*/
     margin: 0 auto;
 }
-/* DIVS WITH TEXT*/
-/*.divsWithText {*/
-/*    padding: 0 2em;*/
-/*}*/
+
 /* Images displayed on one row */
 .img-div-row {
 	margin: 2.3em 0 1em 0;
@@ -381,7 +378,7 @@ footer {
 
     /*Defines the padding a little more*/
     .divsWithText {
-        padding: 0 1.5em;
+        padding: 1em 1.5em;
     }
 
     /*NAV, changes to regular navigation bar*/
@@ -414,7 +411,7 @@ footer {
         width: 100%;
     }
     .divsWithText {
-        padding: 0 1em;
+        padding: 1em 1em;
     }
 }
 
@@ -439,7 +436,7 @@ footer {
         width: 98%;
     }
     .divsWithText {
-        padding: 0 2em;
+        padding: 1em 2em;
     }
      /*Images displayed on one row*/
     .img-div-row {

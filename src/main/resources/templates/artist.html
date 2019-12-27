@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="sv" xmlns:th="http://www.thymeleaf.org">
+<!-- HEAD -->
+<head>
+  <!-- CSS -->
+  <!--        <link rel="stylesheet" href="../static/css/style.css" />-->
+  <!--        <script src="../static/headerScript.js"></script>-->
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+  <script src="/webjars/jquery/jquery.min.js"></script>
+  <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+  <script th:src="@{headerScript.js}" type="module"></script>
+  <script th:src="@{fetchArtists.js}" type="module"></script>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi"/>
+  <meta charset="UTF-8"/>
+  <!-- TODO: JS change title -->
+  <title>MusikalNet - CHANGE ME</title>
+
+  <!-- JAVASCRIPT MODULE -->
+
+</head>
+
+<!-- BODY -->
+
+<body>
+<!-- CONTAINER DIV -->
+<div id="container">
+
+  <!-- HEADDER, controlled with Fragment -->
+  <header>
+  </header>
+  <!-- HEAD & NAV END -->
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- mainDiv -->
+    <div class="mainDiv" id="mainDivId">
+      <!-- divsWithContent -->
+      <div class="divsWithContent">
+        <!-- Actual Content -->
+        <div class="actualContent">
+
+          <div class="divsWithText">
+            <!-- Section -->
+
+            <section>
+
+              <h2>Artists</h2>
+              <h3>All artists within our label</h3>
+              <div id="artist_container"></div>
+
+            </section>
+          </div>
+<!--          <div class="divsWithText">-->
+<!--            &lt;!&ndash; Section &ndash;&gt;-->
+<!--            <section>-->
+<!--              <h2>Fortsättning</h2>-->
+<!--              <h3>Detaljer</h3>-->
+<!--              <h4>2019-12-02</h4>-->
+<!--              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget-->
+<!--                dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,-->
+<!--                nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium-->
+<!--                quis,-->
+<!--                sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec,-->
+<!--                vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,-->
+<!--                justo.</p>-->
+
+<!--            </section>-->
+
+<!--          </div>-->
+          <!-- Divs with Text End -->
+        </div>
+        <!-- Actual Content End -->
+      </div>
+      <!-- Divs With Content End -->
+      <!-- MainDiv End -->
+
+    </div>
+
+  </main>
+  <!-- MAIN END -->
+
+
+  <!-- FOOTER -->
+  <footer>
+
+  </footer>
+
+</div>
+</body>
+
+</html>

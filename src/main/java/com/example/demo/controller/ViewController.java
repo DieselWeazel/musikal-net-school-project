@@ -10,15 +10,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ViewController {
 
     @RequestMapping(method = RequestMethod.GET)
-    public String index(Model model) {
+    public String index() {
         return "home";
     }
     @RequestMapping(value="home", method = RequestMethod.GET)
-    public String home(Model model) {
+    public String home() {
         return "home";
     }
+    @RequestMapping(value="artist", method=RequestMethod.GET)
+    public String artist() {
+        return "artist";
+    }
+    //TODO delete me
     @RequestMapping(value="fetch", method = RequestMethod.GET)
-    public String fetch(Model model) {
+    public String fetch() {
         return "fetch";
     }
 }
