@@ -88,19 +88,21 @@ header {
 }
 
 /*NAV*/
-.navDiv a {
+button, .navDiv a {
     background-color: black;
-    border-image-slice: 1 1 0 0;
     transform-origin: left bottom;
     text-transform: uppercase;
 }
-
+/*NAV*/
+button {
+    color: white;
+}
 /*Hover/Visit, etc*/
-.navDiv a:link {
+button:link, .navDiv a:link {
     color: rgb(255, 255, 255);
     text-decoration: none;
 }
-.navDiv a:visited {
+button:visited, .navDiv a:visited {
     color: #fff;
 }
 
@@ -108,11 +110,11 @@ header {
     color: rgb(127, 127, 177);
 }
 
-.navDiv a:hover {
+button:hover, .navDiv a:hover {
     color: rgb(138, 184, 240);
 }
 
-.navDiv a:active {
+button:active, .navDiv a:active {
     color: rgb(58, 82, 114);
 }
 
@@ -147,7 +149,14 @@ article {
 }
 .img-div-row img {margin: 0 0.4em;}
 
+.member_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 8px;
+}
+.member_list {
 
+}
 /*TEXT PROPERTIES*/
 h1 {
     font-family: 'PT Sans', sans-serif;
@@ -382,7 +391,7 @@ footer {
     }
 
     /*NAV, changes to regular navigation bar*/
-    .navDiv a {
+    button, .navDiv a {
         font-size: 0.9em;
         letter-spacing: .2em;
         padding: .5em 1em;

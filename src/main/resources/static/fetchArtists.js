@@ -1,5 +1,6 @@
-var artistContainer = document.getElementById("artist_container");
-
+var artistContainer = document.getElementById("member_container");
+var artistContainerList;
+var switchButton = document.getElementById("switchButton");
 // Sets the XMLHTTP Request appropriately
 function getRequest() {
   var xhr;
@@ -16,9 +17,7 @@ function loadData() {
   var ajax = getRequest();
   ajax.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
-      var data = this.responseText;
-      console.log(data);
-      // insertTable(data, schema);
+      var data = JSON.parse(this.responseText);
       insertData(data);
     }
   };
@@ -27,28 +26,44 @@ function loadData() {
 }
 
 function insertData(data) {
-  var html = "<div class='divMemberContainer'";
+  var html = "";
   for (var i = 0; i < data.length; i++) {
     html += insertMember(data[i]);
   }
-  html += "</div>";
+  // html += "";
   artistContainer.innerHTML = html;
 }
 
 function insertMember(member) {
   var html = "";
+  // var artistContainer = document.createElement('div');
+  // artistContainer.className = "divImageMember";
   var name = member.name;
   var description = member.description;
   // var genre = member.genre[0];
   var imgLocation = member.image;
   // html += "<div class='divImageMember'><img alt=\"lol\" height=\"370\" width=\"370\" src=\"" + imgLocation + "\"/><p>"+ name +"</p><p>"+ genre +"</p>\"<p>"+ description +"</p></div>";
-  html += "<div class='divImageMember'><img alt=\"+ member.name +\" height=\"370\" width=\"370\" src=\"" + imgLocation + "\"/><p>"+ name +"</p><p>"+ description +"</p></div>";
-
+  // html += "<div class='divImageMember'><img alt=\"+ member.name +\" height=\"370\" width=\"370\" src=\"" + imgLocation + "\"/><p>"+ name +"</p><p>"+ description +"</p></div>";
+  html += "<div class='divImageMember'><img alt='" + member.name + "' height='370' width='370' src='" + member.image + "'/><p>" + member.name + "</p><p>" + member.description + "</p></div>";
   return html;
 }
+
+// Sets all Buttons to appropriate function
+function setButtons() {
+  switchButton.addEventListener("click", function() {
+    console.log("hey");
+    if (artistContainer.className === "member_grid") {
+      artistContainer.className = "member_list";
+      return false;
+    } else if(artistContainer.className === "member_list") {
+      artistContainer.className = "member_grid";
+    }
+  })
+}
+
 function main() {
-  console.log("FETCH ARTISTS!");
   loadData();
+  setButtons();
 }
 main();
 // artistContainer.innerHTML = "<p>test</p>";
