@@ -81,19 +81,18 @@ header {
     padding: 0 0 270px 0;
 }
 
-
+/*NAV + buttons */
 .navDiv {
     flex: 1;
     overflow: hidden;
 }
 
-/*NAV*/
 button, .navDiv a {
     background-color: black;
     transform-origin: left bottom;
     text-transform: uppercase;
 }
-/*NAV*/
+
 button {
     color: white;
 }
@@ -117,7 +116,11 @@ button:hover, .navDiv a:hover {
 button:active, .navDiv a:active {
     color: rgb(58, 82, 114);
 }
+/* Div Buttons */
+.divButtons {
+    margin: 0.5em 0;
 
+}
 /*Main Text / Article */
 article {
     padding: 10px;
