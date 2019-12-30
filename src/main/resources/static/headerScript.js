@@ -32,7 +32,7 @@ function setHeader() {
     headerBanner.className = 'banner' + random;
 }
 function main() {
-    console.log("main?)");
+    console.log("Header Script loaded!");
     setHeader();
     addNavigationButton(viewPort);
     viewPort.addListener(addNavigationButton);

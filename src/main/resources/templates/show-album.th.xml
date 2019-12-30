@@ -1,0 +1,6 @@
+<thlogic>
+    <attr sel="header"
+          th:replace="~{fragments/alternateheader :: alternateheader}"/>
+    <attr sel="footer"
+          th:replace="~{fragments/footer :: footer}"/>
+</thlogic>

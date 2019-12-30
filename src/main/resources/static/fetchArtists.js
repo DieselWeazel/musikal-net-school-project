@@ -10,6 +10,10 @@ var sortZtoAButton = document.getElementById("sortZtoA");
 var sortByParentButton = document.getElementById("sortByParent");
 var sortByGenreButton = document.getElementById("sortByGenre");
 var filterInput = document.getElementById("filterInput");
+var onArtistView;
+var onAlbumView;
+var onTrackView;
+var onGenreView;
 
 // Sets the XMLHTTP Request appropriately
 function getRequest() {
@@ -22,6 +26,7 @@ function getRequest() {
   return xhr;
 }
 
+// Gets all the Data based on dataType
 function loadData(dataType) {
   var ajax = getRequest();
   var urlString = "";
@@ -57,7 +62,7 @@ function loadData(dataType) {
 
 function insertArtistMember(data) {
   for (var i = 0; i < data.length; i++) {
-    memberContainerHtml += "<div class='divImageMember'><img alt='" + data[i].name + "' height='370' width='370' src='" + data[i].image + "'/><h3 class ='memberTitleHeadder'>" + data[i].name + "</h3><p>" + data[i].description + "</p></div>";
+      memberContainerHtml += "<div class='divImageMember'  onclick='location.href=\"view/artist/"+ data[i].artistId + "\";'><img alt='" + data[i].name + "' height='370' width='370' src='" + data[i].image + "'/><h3 class ='memberTitleHeadder'>" + data[i].name + "</h3><h4 class ='memberGenreHeader'>" + data[i].genre.genre + "</h4><p>" + data[i].description + "</p></div>";
   }
   // html += "";
   memberContainer.innerHTML = memberContainerHtml;
@@ -66,7 +71,7 @@ function insertArtistMember(data) {
 
 function insertAlbumMember(data) {
   for (var i = 0; i < data.length; i++) {
-    memberContainerHtml += "<div class='divImageMember'><img alt='" + data[i].name + "' height='370' width='370' src='" + data[i].image + "'/><h3 class ='memberTitleHeadder'>" + data[i].name + "</h3><p>" + data[i].description + "</p></div>";
+    memberContainerHtml += "<div class='divImageMember'  onclick='location.href=\"view/album/"+ data[i].id + "\";'><img alt='" + data[i].name + "' height='370' width='370' src='" + data[i].image + "'/><h3 class ='memberTitleHeadder'>" + data[i].name + "</h3><h4 class ='memberArtistHeader'>Artist: " + data[i].artist.artist + "</h4><h4 class ='memberGenreHeader'>" + data[i].genre.genre + "</h4><p>" + data[i].description + "</p></div>";
   }
   // html += "";
   memberContainer.innerHTML = memberContainerHtml;
@@ -80,18 +85,20 @@ function insertGenreMember(data) {
 
 function insertTrackMember(data) {
   for (var i = 0; i < data.length; i++) {
-    memberContainerHtml += "<div class='divImageMember'><h3 class ='memberTitleHeadder'>" + data[i].name + "</h3><p>" + data[i].description + "</p></div>";
+    memberContainerHtml += "<div class='divImageMember'><h3 class ='memberTitleHeadder'>" + data[i].name + "</h3><h4 class ='memberGenreHeader'>" + data[i].genre.genre + "</h4><h4 class ='memberArtistHeader'>Artist: " + data[i].artist.artist + "</h4><h4>Album: " + data[i].album.album + "</h4></div>";
   }
   memberContainer.innerHTML = memberContainerHtml;
 }
 
-function insertMembersWithNoImage() {
-  var html = "";
-  for (var i = 0; i < data.length; i++) {
-    html += insertMemberWithoutImage(data[i]);
-  }
-}
-// function insertMember(member) {
+//TODO delete if testing shows all works!
+// function insertMembersWithNoImage() {
+//   var html = "";
+//   for (var i = 0; i < data.length; i++) {
+//     html += insertMemberWithoutImage(data[i]);
+//   }
+// }
+//
+// function insertMemberWithoutImage(member) {
 //   var html = "";
 //   // var artistContainer = document.createElement('div');
 //   // artistContainer.className = "divImageMember";
@@ -99,25 +106,16 @@ function insertMembersWithNoImage() {
 //   var description = member.description;
 //   // var genre = member.genre[0];
 //   var imgLocation = member.image;
-//   // html += "<div class='divImageMember'><img alt=\"lol\" height=\"370\" width=\"370\" src=\"" + imgLocation + "\"/><p>"+ name +"</p><p>"+ genre +"</p>\"<p>"+ description +"</p></div>";
-//   // html += "<div class='divImageMember'><img alt=\"+ member.name +\" height=\"370\" width=\"370\" src=\"" + imgLocation + "\"/><p>"+ name +"</p><p>"+ description +"</p></div>";
-//   html +=
+//   html += "<div class='divImageMember'><p>" + member.name + "</p><p>" + member.description + "</p></div>";
 //   return html;
 // }
 
-function insertMemberWithoutImage(member) {
-  var html = "";
-  // var artistContainer = document.createElement('div');
-  // artistContainer.className = "divImageMember";
-  var name = member.name;
-  var description = member.description;
-  // var genre = member.genre[0];
-  var imgLocation = member.image;
-  html += "<div class='divImageMember'><p>" + member.name + "</p><p>" + member.description + "</p></div>";
-  return html;
-}
-
 function setButtons() {
+    onArtistView = true;
+    onAlbumView = false;
+    onTrackView = false;
+    onGenreView = false;
+   sortByParentButton.innerHTML = "..";
   switchButton.addEventListener("click", function() {
     console.log("hey");
     if (memberContainer.className === "member_grid") {
@@ -129,15 +127,43 @@ function setButtons() {
   });
   artistButton.addEventListener("click", function() {
     loadData("artist");
+      sortByParentButton.innerHTML = "..";
+    sortByParentButton.disabled = true;
+      onArtistView = true;
+      onAlbumView = false;
+      onTrackView = false;
+      onGenreView = false;
+      filterInput.value="";
   });
   albumButton.addEventListener("click", function() {
     loadData("album");
+      sortByParentButton.innerHTML = "Sort By Artist";
+      sortByParentButton.disabled = false;
+      onArtistView = false;
+      onAlbumView = true;
+      onTrackView = false;
+      onGenreView = false;
+      filterInput.value="";
   });
   genreButton.addEventListener("click", function() {
     loadData("genre");
+      sortByParentButton.innerHTML = "..";
+      sortByParentButton.disabled = true;
+      onArtistView = false;
+      onAlbumView = false;
+      onTrackView = false;
+      onGenreView = true;
+      filterInput.value="";
   });
   trackButton.addEventListener("click", function() {
     loadData("track");
+      sortByParentButton.innerHTML = "Sort By Artist";
+      sortByParentButton.disabled = false;
+      onArtistView = false;
+      onAlbumView = false;
+      onTrackView = true;
+      onGenreView = false;
+      filterInput.value="";
   });
   sortAtoZButton.addEventListener("click", function() {
     sort("AtoZ");
@@ -152,7 +178,8 @@ function setButtons() {
     sort("genre");
   });
   filterInput.addEventListener("input", function() {
-    loadData("genre");
+
+      loadFilteredData(filterInput.value);
   });
 }
 function sort(sortValue) {
@@ -208,11 +235,84 @@ function sortZtoA() {
     }
   }
 }
+//memberArtistHeader
 function sortByParent() {
+    var membersInsideContainer, divsWithinContainer, i, switching, shouldSwitch;
+    membersInsideContainer = document.getElementsByClassName("memberArtistHeader");
+    divsWithinContainer = document.getElementsByClassName("divImageMember");
+    switching = true;
 
+    while (switching) {
+        switching = false;
+        for (i = 0; i < (membersInsideContainer.length - 1); i++) {
+            shouldSwitch = false;
+            if (membersInsideContainer[i].innerHTML.toLowerCase().slice(8) > membersInsideContainer[i + 1].innerHTML.toLowerCase().slice(8)) {
+                shouldSwitch = true;
+                break;
+            }
+        }
+        if (shouldSwitch) {
+            divsWithinContainer[i].parentNode.insertBefore(divsWithinContainer[i + 1], divsWithinContainer[i]);
+            switching = true;
+        }
+    }
 }
+//memberGenreHeader
 function sortByGenre() {
+    var membersInsideContainer, divsWithinContainer, i, switching, shouldSwitch;
+    membersInsideContainer = document.getElementsByClassName("memberGenreHeader");
+    divsWithinContainer = document.getElementsByClassName("divImageMember");
+    switching = true;
 
+    while (switching) {
+        switching = false;
+        for (i = 0; i < (membersInsideContainer.length - 1); i++) {
+            shouldSwitch = false;
+            if (membersInsideContainer[i].innerHTML.toLowerCase() > membersInsideContainer[i + 1].innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+            }
+        }
+        if (shouldSwitch) {
+            divsWithinContainer[i].parentNode.insertBefore(divsWithinContainer[i + 1], divsWithinContainer[i]);
+            switching = true;
+        }
+    }
+}
+
+// Filter Function, loaded from backend.
+function loadFilteredData(filterValue) {
+    var ajax = getRequest();
+    var urlString = "";
+
+    if (onArtistView) {
+        urlString = "http://localhost:8080/api/artist/filter?filter=" + filterValue;
+    }
+    if (onAlbumView) {
+        urlString = "http://localhost:8080/api/album/filter?filter=" + filterValue;
+    }
+    if (onTrackView) {
+        urlString = "http://localhost:8080/api/track/filter?filter=" + filterValue;
+    }
+
+    console.log(urlString);
+    ajax.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            console.log("searching");
+
+            var data = JSON.parse(this.responseText);
+            memberContainerHtml = "";
+            if (onArtistView) {
+                insertArtistMember(data);
+            } else if (onAlbumView) {
+                insertAlbumMember(data);
+            } else if (onTrackView) {
+                insertTrackMember(data);
+            }
+        }
+    };
+    ajax.open("POST", urlString, true);
+    ajax.send();
 }
 
 
@@ -221,20 +321,3 @@ function main() {
   setButtons();
 }
 main();
-// artistContainer.innerHTML = "<p>test</p>";
-// function mainFunction(callback) {
-//   var someData = 'just data why are you waiting';
-//   return new Promise(function(resolve, reject) {
-//     setTimeout(function() {
-//       resolve(someData);
-//     }, 5000);
-//   });
-// }
-//
-// var promise = mainFunction(print);
-// promise.then(print);
-// // .then() <- om man vill bygga vidare
-//
-// function print(data) {
-//   console.dir("data is " + data);
-// }
