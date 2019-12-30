@@ -95,6 +95,7 @@ public class AlbumServiceImpl implements AbstractMusicService<Album, AlbumDTO, A
     @Transactional
     @Override
     public AlbumDTO removeEntity(Long id) {
+        log.info("Deleting = {}", id);
         Album deleteAlbum = findAlbum(id);
         deleteAlbum.getTrackList().clear();
 

@@ -81,22 +81,26 @@ header {
     padding: 0 0 270px 0;
 }
 
-/*NAV + buttons */
+/*NAV + buttons + input + select */
 .navDiv {
     flex: 1;
     overflow: hidden;
 }
 
-button, .navDiv a {
+button, input, select, .navDiv a {
     background-color: black;
     transform-origin: left bottom;
     text-transform: uppercase;
 }
 
-button {
+button, input, select {
     color: white;
 }
-/*Hover/Visit, etc*/
+
+input, select {
+    padding: 0.5em;
+}
+    /*Hover/Visit, etc*/
 button:link, .navDiv a:link {
     color: rgb(255, 255, 255);
     text-decoration: none;
@@ -150,12 +154,19 @@ article {
 	margin: 2.3em 0 1em 0;
 	text-align: center;
 }
-.img-div-row img {margin: 0 0.4em;}
+.img-div-row img {
+    margin: 0 0.4em;
+}
 
+/*View Entity, view album/artist*/
+#viewEntity {
+    display: flex;
+}
+.viewEntityDivs {
+    margin: 0.2em;
+}
 .member_grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 8px;
 }
 .member_list {
 
@@ -191,7 +202,7 @@ h4 {
     color: #d7d7d7;
     margin: 0 0 0.3em 0;
 }
-.actualContent p {
+label, .actualContent p {
     font-family: 'Quicksand', sans-serif;
     color: #d7d7d7;
     font-size: 1.4em;
@@ -246,7 +257,12 @@ footer {
 
 /*MEDIA QUERIES*/
 @media screen and (min-width: 500px){
-
+    /*Sets Grid to 1 per column*/
+    .member_grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 6px;
+    }
     /*CONTAINER*/
     #container {
         width: 100%;
@@ -267,6 +283,14 @@ footer {
 
 }
 @media screen and (min-width: 715px) {
+
+    /*Sets Grid 2 per column*/
+    .member_grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 8px;
+    }
+
     /*HEADER*/
     header {
         padding: 10px 30px;
@@ -278,6 +302,8 @@ footer {
 }
 /*MAX 849, MENU TOGGLE CSS FUNCTIONALITIES, controlled with JS */
 @media screen and (max-width: 849px) {
+
+
     .navDiv a:not(:first-child) {
         display: none;
     }
@@ -429,7 +455,12 @@ footer {
 
 /* ViewPort that has minimum width settings for Divs, changes to fit more accordingly*/
 @media screen and (min-width: 1000px){
-
+    /*Sets Grid to 3 per column*/
+    .member_grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 8px;
+    }
     /*CONTAINER*/
     #container {
         width: 96%;

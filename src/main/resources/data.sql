@@ -28,8 +28,8 @@ INSERT INTO album(description, album_title, image, artist_id, genre_id) VALUES
 ('Partyraisers first solo album.', 'Enjoy The Noise', 'img/album/partyraiser_enjoythenoise.jpg', 3, 2),
 ('Partyraiser delivers a crazy album about the street life on the westcoast.', 'Westcoast Animals', 'img/album/partyraiser_westcoastanimals.jpg', 3, 2),
 ('Korsakoffs first solo album.', 'Stiletto', 'img/album/korsakoff_stiletto.jpg', 4, 3),
-('With this album Korsakoff delivers pink noise!', 'Pink Noise', 'img/album/korsakoff_pinknoise.png', 5, 3),
-('Neophyte gives us an insight into the life of a maniac.', 'Maniac Vol. 1', 'img/album/neophyte-mainiak-super-special-offer.jpg', 4, 3),
+('With this album Korsakoff delivers pink noise!', 'Pink Noise', 'img/album/korsakoff_pinknoise.png', 4, 3),
+('Neophyte gives us an insight into the life of a maniac.', 'Maniac Vol. 1', 'img/album/neophyte-mainiak-super-special-offer.jpg', 5, 3),
 ('Maniac part 2 continues on where Maniac 1 left off', 'Maniac Vol. 2', 'img/album/neophyte_maniac_vol2.jpg', 5, 3),
 --
 ('We are welcome to the DEADFACED Dimension!', 'The Deadfaced Dimension', 'img/album/angerfist_deadfaceddimension.jpg', 6, 3),

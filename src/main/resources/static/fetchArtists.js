@@ -10,6 +10,7 @@ var sortZtoAButton = document.getElementById("sortZtoA");
 var sortByParentButton = document.getElementById("sortByParent");
 var sortByGenreButton = document.getElementById("sortByGenre");
 var filterInput = document.getElementById("filterInput");
+var selectGenre = document.getElementById("selectGenre");
 var onArtistView;
 var onAlbumView;
 var onTrackView;
@@ -60,6 +61,77 @@ function loadData(dataType) {
   ajax.send();
 }
 
+// Filter Function, loaded from backend.
+function loadFilteredData(filterValue) {
+    var ajax = getRequest();
+    var urlString = "";
+
+    if (onArtistView) {
+        urlString = "http://localhost:8080/api/artist/filter?filter=" + filterValue;
+    }
+    if (onAlbumView) {
+        urlString = "http://localhost:8080/api/album/filter?filter=" + filterValue;
+    }
+    if (onTrackView) {
+        urlString = "http://localhost:8080/api/track/filter?filter=" + filterValue;
+    }
+
+    console.log(urlString);
+    ajax.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            console.log("searching");
+
+            var data = JSON.parse(this.responseText);
+            memberContainerHtml = "";
+            if (onArtistView) {
+                insertArtistMember(data);
+            } else if (onAlbumView) {
+                insertAlbumMember(data);
+            } else if (onTrackView) {
+                insertTrackMember(data);
+            }
+        }
+    };
+    ajax.open("POST", urlString, true);
+    ajax.send();
+}
+
+// Filters by Genre via Backend
+function loadByGenre(genre) {
+    var ajax = getRequest();
+    var urlString = "";
+
+    if (onArtistView) {
+        urlString = "http://localhost:8080/api/artist/genre?genre=" + genre;
+    }
+    if (onAlbumView) {
+        urlString = "http://localhost:8080/api/album/genre?genre=" + genre;
+    }
+    if (onTrackView) {
+        urlString = "http://localhost:8080/api/track/genre?genre=" + genre;
+    }
+
+    console.log(urlString);
+    ajax.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            console.log("searching");
+
+            var data = JSON.parse(this.responseText);
+            memberContainerHtml = "";
+            if (onArtistView) {
+                insertArtistMember(data);
+            } else if (onAlbumView) {
+                insertAlbumMember(data);
+            } else if (onTrackView) {
+                insertTrackMember(data);
+            }
+        }
+    };
+    ajax.open("POST", urlString, true);
+    ajax.send();
+}
+
+
 function insertArtistMember(data) {
   for (var i = 0; i < data.length; i++) {
       memberContainerHtml += "<div class='divImageMember'  onclick='location.href=\"view/artist/"+ data[i].artistId + "\";'><img alt='" + data[i].name + "' height='370' width='370' src='" + data[i].image + "'/><h3 class ='memberTitleHeadder'>" + data[i].name + "</h3><h4 class ='memberGenreHeader'>" + data[i].genre.genre + "</h4><p>" + data[i].description + "</p></div>";
@@ -73,7 +145,6 @@ function insertAlbumMember(data) {
   for (var i = 0; i < data.length; i++) {
     memberContainerHtml += "<div class='divImageMember'  onclick='location.href=\"view/album/"+ data[i].id + "\";'><img alt='" + data[i].name + "' height='370' width='370' src='" + data[i].image + "'/><h3 class ='memberTitleHeadder'>" + data[i].name + "</h3><h4 class ='memberArtistHeader'>Artist: " + data[i].artist.artist + "</h4><h4 class ='memberGenreHeader'>" + data[i].genre.genre + "</h4><p>" + data[i].description + "</p></div>";
   }
-  // html += "";
   memberContainer.innerHTML = memberContainerHtml;
 }
 function insertGenreMember(data) {
@@ -178,9 +249,41 @@ function setButtons() {
     sort("genre");
   });
   filterInput.addEventListener("input", function() {
-
       loadFilteredData(filterInput.value);
   });
+    selectGenre.addEventListener("change", function() {
+        if (selectGenre.value === "All") {
+            console.log("all");
+            if (onArtistView) {
+                console.log("onArtistView");
+                loadData("artist");
+            }
+            if (onAlbumView) {
+                console.log("onAlbumView");
+                loadData("album");
+            }
+            if (onTrackView) {
+                console.log("onTrackView");
+                loadData("track");
+            }
+            if (onGenreView) {
+                console.log("onGenreView");
+                loadData("genre");
+            }
+        } else if (selectGenre.value === "Frenchcore") {
+            console.log("frenchcore");
+            loadByGenre("Frenchcore");
+        } else if (selectGenre.value === "Uptempo-Hardcore") {
+            console.log("Uptempo");
+            loadByGenre("Uptempo-Hardcore");
+        } else if (selectGenre.value === "Hardcore") {
+            console.log("Hardcore");
+            loadByGenre("Hardcore");
+        } else if (selectGenre.value === "Gabber") {
+            console.log("Gabber");
+            loadByGenre("Gabber");
+        }
+    })
 }
 function sort(sortValue) {
   if (sortValue === "AtoZ") {
@@ -279,42 +382,6 @@ function sortByGenre() {
         }
     }
 }
-
-// Filter Function, loaded from backend.
-function loadFilteredData(filterValue) {
-    var ajax = getRequest();
-    var urlString = "";
-
-    if (onArtistView) {
-        urlString = "http://localhost:8080/api/artist/filter?filter=" + filterValue;
-    }
-    if (onAlbumView) {
-        urlString = "http://localhost:8080/api/album/filter?filter=" + filterValue;
-    }
-    if (onTrackView) {
-        urlString = "http://localhost:8080/api/track/filter?filter=" + filterValue;
-    }
-
-    console.log(urlString);
-    ajax.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            console.log("searching");
-
-            var data = JSON.parse(this.responseText);
-            memberContainerHtml = "";
-            if (onArtistView) {
-                insertArtistMember(data);
-            } else if (onAlbumView) {
-                insertAlbumMember(data);
-            } else if (onTrackView) {
-                insertTrackMember(data);
-            }
-        }
-    };
-    ajax.open("POST", urlString, true);
-    ajax.send();
-}
-
 
 function main() {
   loadData("artist");

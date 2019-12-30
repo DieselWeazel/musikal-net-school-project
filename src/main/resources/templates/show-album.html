@@ -10,7 +10,8 @@
     <script src="/webjars/jquery/jquery.min.js"></script>
     <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
     <script th:src="@{../../headerScript.js}" type="module"></script>
-<!--    <script th:src="@{fetchArtists.js}" type="module"></script>-->
+    <script th:src="@{../../deleteEditEntity.js}" type="module"></script>
+    <!--    <script th:src="@{fetchArtists.js}" type="module"></script>-->
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi"/>
     <meta charset="UTF-8"/>
@@ -44,55 +45,33 @@
 
                     <div class="divsWithText">
                         <!-- Section -->
+                        <div id="member_container" class="member_grid">
+                            <section>
+                                <div th:object="${album}" id="viewEntity">
+                                    <div class="viewEntityDivs">
+                                        <img th:alt="${album.getEntityTitle()}" height='370' width='370'
+                                             th:src="@{${'../../' + album.getImage()}}"/>
+                                        <h2 th:text="${album.getEntityTitle()}">ARTIST DISPLAYNAME</h2>
+                                        <h3 th:text="${album.getDescription()}">ARTIST DESCRIPTIONDISPLAY</h3>
+                                        <div class="divButtons">
+                                            <button type="button" id="delete">Delete Album</button>
+                                            <button type="button" id="edit">Edit</button>
+                                        </div>
+                                    </div>
+                                    <div class="viewEntityDivs">
+                                        <div th:each="track : ${album.getTrackList()}">
+                                            <h3 th:text="${track.getDescription()}" style="display:inline;"></h3>
+                                            <p style="display:inline;"> : </p>
+                                            <h3 th:text="${track.getEntityTitle()}" style="display:inline;" class="entityHeadder"></h3>
+                                        </div>
 
-                        <section>
-
-                            <h2>Artist:</h2>
-                            <h3>All artists within our label</h3>
-                            <!-- Buttons -->
-                            <!--                            <div class ="divButtons">-->
-                            <!--                                <button type="button" id="switchButton">Switch View</button>-->
-                            <!--                                <button type="button" id="artistButton">Artists</button>-->
-                            <!--                                <button type="button" id="genreButton">Genre</button>-->
-                            <!--                                <button type="button" id="albumButton">Albums</button>-->
-                            <!--                                <button type="button" id="trackButton">Tracks</button>-->
-                            <!--                            </div>-->
-                            <!--                            <div class ="divButtons">-->
-                            <!--                                <button type="button" id="sortAtoZ">A-Z</button>-->
-                            <!--                                <button type="button" id="sortZtoA">Z-A</button>-->
-                            <!--                                <button type="button" id="sortByParent">NULL</button>-->
-                            <!--                                <button type="button" id="sortByGenre">Sort By Genre</button>-->
-                            <!--                                <label for ="filterInput">Filter:</label>-->
-                            <!--                                <input type="text" id="filterInput">-->
-                            <!--                            </div>-->
-                            <div id="member_container" class="member_grid">
-                                <p>test</p>
-                                <div th:object="${album}">
-                                    <p th:text="${album.getEntityTitle()}">...</p>
+                                    </div>
                                 </div>
 
-                            </div>
-
-                        </section>
+                            </section>
+                        </div>
                     </div>
-                    <!--          <div class="divsWithText">-->
-                    <!--            &lt;!&ndash; Section &ndash;&gt;-->
-                    <!--            <section>-->
-                    <!--              <h2>Fortsättning</h2>-->
-                    <!--              <h3>Detaljer</h3>-->
-                    <!--              <h4>2019-12-02</h4>-->
-                    <!--              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget-->
-                    <!--                dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,-->
-                    <!--                nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium-->
-                    <!--                quis,-->
-                    <!--                sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec,-->
-                    <!--                vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,-->
-                    <!--                justo.</p>-->
 
-                    <!--            </section>-->
-
-                    <!--          </div>-->
-                    <!-- Divs with Text End -->
                 </div>
                 <!-- Actual Content End -->
             </div>
