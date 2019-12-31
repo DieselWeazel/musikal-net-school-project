@@ -48,11 +48,11 @@
                         <div id="member_container" class="member_grid">
                         <section>
                                 <div th:object="${artist}" id="viewEntity">
-                                    <div class = "viewEntityDivs">
+                                    <div class = "viewEntityDivs"  id="mainEntityDiv">
                                         <img th:alt="${artist.getEntityTitle()}" height='370' width='370' th:src="@{${'../../' + artist.getImage()}}"/>
                                         <h2 th:text="${artist.getEntityTitle()}" id="mainEntityHeader">ARTIST DISPLAYNAME</h2>
                                         <h3 th:text="${artist.getDescription()}" id="mainDescHeader">ARTIST DESCRIPTIONDISPLAY</h3>
-                                        <div class ="divButtons">
+                                        <div class ="divButtons" id ="divButtonEntityView">
                                             <button type="button" id="delete">Delete Artist</button>
                                             <button type="button" id="edit">Edit</button>
                                         </div>
@@ -61,7 +61,6 @@
                                         <h3>Known for:</h3>
                                         <div th:each="album : ${artist.getArtistAlbumList()}">
                                             <img th:alt="${album.getEntityTitle()}" height='370' width='370' th:src="@{${'../../' + album.getImage()}}"/>
-                                            <h3 th:text="${album.getEntityTitle()}" class="entityHeadder">
                                                 <div th:each="track : ${album.getTrackList()}">
                                                     <p th:text="${track.getEntityTitle()}"></p>
                                                 </div>

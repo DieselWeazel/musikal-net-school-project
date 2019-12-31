@@ -48,21 +48,21 @@
                         <div id="member_container" class="member_grid">
                             <section>
                                 <div th:object="${album}" id="viewEntity">
-                                    <div class="viewEntityDivs">
+                                    <div class = "viewEntityDivs"  id="mainEntityDiv">
                                         <img th:alt="${album.getEntityTitle()}" height='370' width='370'
                                              th:src="@{${'../../' + album.getImage()}}"/>
-                                        <h2 th:text="${album.getEntityTitle()}">ARTIST DISPLAYNAME</h2>
-                                        <h3 th:text="${album.getDescription()}">ARTIST DESCRIPTIONDISPLAY</h3>
-                                        <div class="divButtons">
+                                        <h2 th:text="${album.getEntityTitle()}" id="mainEntityHeader">ARTIST DISPLAYNAME</h2>
+                                        <h3 th:text="${album.getDescription()}" id="mainDescHeader">ARTIST DESCRIPTIONDISPLAY</h3>
+                                        <div class="divButtons"  id ="divButtonEntityView">
                                             <button type="button" id="delete">Delete Album</button>
                                             <button type="button" id="edit">Edit</button>
                                         </div>
                                     </div>
-                                    <div class="viewEntityDivs">
+                                    <div class="viewEntityDivs" id ="albumTracksDiv">
                                         <div th:each="track : ${album.getTrackList()}">
-                                            <h3 th:text="${track.getDescription()}" style="display:inline;"></h3>
+                                            <h3 th:text="${track.getDescription()}" style="display:inline;" ></h3>
                                             <p style="display:inline;"> : </p>
-                                            <h3 th:text="${track.getEntityTitle()}" style="display:inline;" class="entityHeadder"></h3>
+                                            <h3 th:text="${track.getEntityTitle()}" style="display:inline;" class="trackEntityHeader"></h3>
                                         </div>
 
                                     </div>
