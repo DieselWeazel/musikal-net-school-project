@@ -38,7 +38,23 @@ public class ViewController {
     public String artist() {
         return "artist";
     }
+    @RequestMapping(value="add-artist", method=RequestMethod.GET)
+    public String addArtist() {
+        return "add-artist";
+    }
+    @RequestMapping(value="add-album", method=RequestMethod.GET)
+    public String addAlbum() {
+        return "add-album";
+    }
 
+    @RequestMapping(value="about", method=RequestMethod.GET)
+    public String about() {
+        return "about";
+    }
+    @RequestMapping(value="contact", method=RequestMethod.GET)
+    public String contact() {
+        return "contact";
+    }
     @GetMapping(value="/view/artist/{id}")
     public String showArtist(@PathVariable("id") Long id, Model model) {
         Artist artist = artistRepository.findById(id).orElseThrow(RuntimeException::new);

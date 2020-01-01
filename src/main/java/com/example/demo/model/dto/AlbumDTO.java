@@ -11,18 +11,23 @@ public class AlbumDTO extends EntityDTO {
 
     private Long id;
     private List<SimpleTrackDTO> tracks;
+    private Long artistId;
+    private Long genreId;
     private SimpleArtistOnlyDTO artist;
     private SimpleGenreDTO genre;
     private String image;
 
-    public AlbumDTO(String entityName, String description, Long id, List<SimpleTrackDTO> tracks, SimpleArtistOnlyDTO artist, SimpleGenreDTO genre, String image) {
+    public AlbumDTO(String entityName, String description, Long id, List<SimpleTrackDTO> tracks, Long artistId, Long genreId, SimpleArtistOnlyDTO artist, SimpleGenreDTO genre, String image) {
         super(entityName, description);
         this.id = id;
         this.tracks = tracks;
+        this.artistId = artistId;
+        this.genreId = genreId;
         this.artist = artist;
         this.genre = genre;
         this.image = image;
     }
+
 
     public Long getId() {
         return id;
@@ -62,5 +67,21 @@ public class AlbumDTO extends EntityDTO {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Long getArtistId() {
+        return artistId;
+    }
+
+    public void setArtistId(Long artistId) {
+        this.artistId = artistId;
+    }
+
+    public Long getGenreId() {
+        return genreId;
+    }
+
+    public void setGenreId(Long genreId) {
+        this.genreId = genreId;
     }
 }

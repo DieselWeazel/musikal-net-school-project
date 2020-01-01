@@ -15,8 +15,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi"/>
     <meta charset="UTF-8"/>
-    <!-- TODO: JS change title -->
-    <title>MusikalNet - CHANGE ME</title>
+    <title>MusikalNet - Album</title>
 
     <!-- JAVASCRIPT MODULE -->
 
@@ -59,8 +58,8 @@
                                         </div>
                                     </div>
                                     <div class="viewEntityDivs" id ="albumTracksDiv">
-                                        <div th:each="track : ${album.getTrackList()}">
-                                            <h3 th:text="${track.getDescription()}" style="display:inline;" ></h3>
+                                        <div th:each="track : ${album.getTrackList()}" class = "viewEntityDivClass">
+                                            <h3 th:text="${track.getDescription()}" style="display:inline;" class="trackDescHeader"></h3>
                                             <p style="display:inline;"> : </p>
                                             <h3 th:text="${track.getEntityTitle()}" style="display:inline;" class="trackEntityHeader"></h3>
                                         </div>

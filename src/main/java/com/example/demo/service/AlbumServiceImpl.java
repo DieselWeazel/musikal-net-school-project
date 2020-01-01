@@ -87,7 +87,7 @@ public class AlbumServiceImpl implements AbstractMusicService<Album, AlbumDTO, A
         albumEdit.setDescription(albumCreateDTO.getDescription());
         albumEdit.getTrackList().clear();
         albumEdit.getTrackList().addAll((albumAddTrackService.getTracksForAlbum(Arrays.asList(albumCreateDTO.getTracks()), genre, artist)));
-        albumEdit.setImage(albumCreateDTO.getImage());
+//        albumEdit.setImage(albumCreateDTO.getImage());
         albumRepository.save(albumEdit);
         return returnAlbumDTO(albumEdit);
     }
@@ -119,7 +119,8 @@ public class AlbumServiceImpl implements AbstractMusicService<Album, AlbumDTO, A
     }
 
     private AlbumDTO returnAlbumDTO(Album album) {
-        return new AlbumDTO(album.getEntityTitle(), album.getDescription(), album.getId(), loadTracksFromAlbum.loadAllChildEntities(album), new SimpleArtistOnlyDTO(album.getArtist().getEntityTitle()),
+        return new AlbumDTO(album.getEntityTitle(), album.getDescription(), album.getId(), loadTracksFromAlbum.loadAllChildEntities(album),
+                album.getArtist().getId(), album.getGenre().getId(), new SimpleArtistOnlyDTO(album.getArtist().getEntityTitle()),
                 new SimpleGenreDTO(album.getGenre().getEntityTitle()), album.getImage());
     }
 

@@ -5,8 +5,11 @@ var editButton = document.getElementById("edit");
 var buttonDiv = document.getElementById("divButtonEntityView");
 var inputArtistName = document.createElement("INPUT");
 var inputArtistDescName = document.createElement("INPUT");
+var trackHeadders = document.getElementsByClassName("trackEntityHeader");
+var trackInputElements;
 var submitButton;
 var data = "";
+var albumData = "";
 var onArtistView;
 var onAlbumView;
 var pathArray = window.location.pathname.split('/');
@@ -64,10 +67,12 @@ function editEntity() {
         console.log("here is artistdata");
         console.log(data);
         console.log(JSON.stringify(data));
-        console.log(data);
     }
     if (onAlbumView) {
         urlString = "http://localhost:8080/api/album/" + pathArray[3];
+        data = createAlbum();
+        console.log("here is albumdata");
+        // console.log(JSON.stringify(data));
     }
 
 
@@ -81,11 +86,25 @@ function editEntity() {
     ajax.setRequestHeader('Content-Type', 'application/json');
     ajax.send(JSON.stringify(data));
 }
-// var inputArtistName = document.createElement("INPUT");
-// var inputArtistDescName = document.createElement("INPUT");
+
 function createArtist() {
     var artist = {"entityName" : inputArtistName.value, "description" : inputArtistDescName.value};
     return artist;
+}
+
+function createAlbum() {
+    var album = {"entityName" : inputArtistName.value,
+        "description" : inputArtistDescName.value,
+        "artistId" : albumData.artistId,
+        "genreId" : albumData.genreId,
+        "tracks" : []
+    }
+    trackInputElements = document.getElementsByClassName("newInputTrack");
+    for (var i = 0; i < trackInputElements.length; i++) {
+        album.tracks.push(trackInputElements[i].value);
+    }
+    console.log(album);
+    return album;
 }
 
 function prepareEditScreen() {
@@ -114,18 +133,19 @@ function prepareEditScreen() {
         addEditAlbumFields();
     }
 }
-
+// trackDescHeader
+// trackEntityHeader
 function addEditAlbumFields() {
-    var trackListDiv = document.getElementById("albumTracksDiv");
-        var descendents = trackListDiv.getElementsByTagName('*');
-
-        for (var i = 0; i < descendents.length; i++) {
-            var newInput =  document.createElement("INPUT");
-            newInput.className = "newInputTrack";
-            console.log(descendents[i].innerHTML);
-            newInput.value =  descendents[i].innerHTML;
-            trackListDiv.insertAfter(newInput, descendents[i]);
+        for (var j = 0; j < trackHeadders.length; j++) {
+            while (trackHeadders[j] !== undefined) {
+                // console.log(trackHeadders[j]);
+                var newInput = document.createElement("INPUT");
+                newInput.className = "newInputTrack";
+                newInput.value = trackHeadders[j].innerHTML;
+                trackHeadders[j].replaceWith(newInput);
+            }
         }
+
 }
 // <h2 th:text="${artist.getEntityTitle()}" id="mainEntityHeader">ARTIST DISPLAYNAME</h2>
 // <h3 th:text="${artist.getDescription()}" id="mainDescHeader">ARTIST DESCRIPTIONDISPLAY</h3>
@@ -158,6 +178,17 @@ function setButtonsAndPage() {
     } else {
         onArtistView = false;
         onAlbumView = true;
+        var ajax = getRequest();
+        var urlString = "http://localhost:8080/api/album/" + pathArray[3];
+        ajax.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                albumData = JSON.parse(this.responseText);
+                // memberContainerHtml = "";
+                console.log(albumData);
+            }
+        };
+        ajax.open("GET", urlString, true);
+        ajax.send();
     }
 }
 
