@@ -100,6 +100,15 @@ button, input, select {
 input, select {
     padding: 0.5em;
 }
+.formDiv input, .formDiv label, .formDiv button, .formDiv select, .formDiv table {
+    display: inline-block;
+    float: left;
+    clear: left;
+}
+#descriptionInput {
+    width: 500px;
+    height: 200px;
+}
     /*Hover/Visit, etc*/
 button:link, .navDiv a:link {
     color: rgb(255, 255, 255);
@@ -139,8 +148,11 @@ article {
 .divsWithContent {
     background-image: linear-gradient(to right, #48494a, #48494a 5%, #2b3238 10%, #2b3238 90%, #48494a 95%, #48494a);
     padding: 1em 0 0 0;
+    display: inline-block;
 }
-
+.divsWithText {
+    display: inline-block;
+}
 /* ACTUAL Content, holding the actual text etc */
 .actualContent {
 	background: #383838;
@@ -170,6 +182,13 @@ article {
 }
 .member_list {
 
+}
+#albumTracksDiv {
+    width: 800px;
+}
+.albumTrackDivClass {
+    display: flex;
+    flex-direction: row;
 }
 /*TEXT PROPERTIES*/
 h1 {
@@ -202,7 +221,7 @@ h4 {
     color: #d7d7d7;
     margin: 0 0 0.3em 0;
 }
-label, .actualContent p {
+label, .actualContent p, footer p {
     font-family: 'Quicksand', sans-serif;
     color: #d7d7d7;
     font-size: 1.4em;

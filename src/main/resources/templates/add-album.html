@@ -10,7 +10,7 @@
     <script src="/webjars/jquery/jquery.min.js"></script>
     <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
     <script th:src="@{headerScript.js}" type="module"></script>
-    <script th:src="@{fetchArtists.js}" type="module"></script>
+    <script th:src="@{addAlbum.js}" type="module"></script>
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi"/>
     <meta charset="UTF-8"/>
@@ -41,59 +41,55 @@
                 <!-- Actual Content -->
                 <div class="actualContent">
 
-                    <div class="divsWithText">
+                    <div class="divsWithText" id="formHolderDiv">
                         <!-- Section -->
 
                         <section>
+                            <h2>Create Album:</h2>
+                            <h3>Add album to our existing artists.</h3>
+                            <div class="formDiv">
+                                <label for="albumNameInput">Artist Name:</label>
+                                <input type="text" name="entityName" id="albumNameInput" value="Album Name">
+                                <label for="selectArtist">Select Artist</label>
+                                <select id="selectArtist">
 
-                            <h2>Artists</h2>
-                            <h3>All artists within our label</h3>
-                            <!-- Buttons -->
-                            <div class ="divButtons">
-                                <button type="button" id="switchButton">Switch View</button>
-                                <button type="button" id="artistButton">Artists</button>
-                                <button type="button" id="genreButton">Genre</button>
-                                <button type="button" id="albumButton">Albums</button>
-                                <button type="button" id="trackButton">Tracks</button>
-                            </div>
-                            <div class ="divButtons">
-                                <button type="button" id="sortAtoZ">A-Z</button>
-                                <button type="button" id="sortZtoA">Z-A</button>
-                                <button type="button" id="sortByParent">NULL</button>
-                                <button type="button" id="sortByGenre">Sort By Genre</button>
-                                <label for ="filterInput">Filter:</label>
-                                <input type="text" id="filterInput">
-                                <label for ="selectGenre">Filter by Genre:</label>
-                                <select id ="selectGenre">
-                                    <option value="All">All</option>
-                                    <option value="Frenchcore">Frenchcore</option>
-                                    <option value="Uptempo-Hardcore">Uptempo-Hardcore</option>
-                                    <option value="Hardcore">Hardcore</option>
-                                    <option value="Gabber">Gabber</option>
                                 </select>
+
+                                <label for="imageInputUrl">Image URL:</label>
+                                <input type="text" name="description" id="imageInputUrl"
+                                       value="img url">
+
+                                <label for="descriptionInput">Album Description:</label>
+                                <input type="text" name="description" id="descriptionInput"
+                                       value="Artist Description goes here">
+
+                                <table>
+                                    <tr>
+                                        <th>Track:</th>
+                                    </tr>
+                                    <tr class="trackRowClass">
+                                        <td>
+                                            <label for="inputTrack0">Track Title:</label>
+                                            <input type="text" name="track" id="inputTrack0"
+                                                   value="TRACK NAME" class="inputTrackClass">
+                                        </td>
+                                    </tr>
+                                    <tbody id ="trackTableBody">
+
+                                    </tbody>
+                                    <tr>
+                                        <td>
+                                            <button type="button" value="Submit" id="addTrack">Add More Tracks</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <button type="button" value="Submit" id="submitButton">Submit</button>
+                                <!--                  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>-->
                             </div>
-                            <div id="member_container" class="member_grid"></div>
 
                         </section>
                     </div>
-                    <!--          <div class="divsWithText">-->
-                    <!--            &lt;!&ndash; Section &ndash;&gt;-->
-                    <!--            <section>-->
-                    <!--              <h2>Fortsättning</h2>-->
-                    <!--              <h3>Detaljer</h3>-->
-                    <!--              <h4>2019-12-02</h4>-->
-                    <!--              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget-->
-                    <!--                dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,-->
-                    <!--                nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium-->
-                    <!--                quis,-->
-                    <!--                sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec,-->
-                    <!--                vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,-->
-                    <!--                justo.</p>-->
 
-                    <!--            </section>-->
-
-                    <!--          </div>-->
-                    <!-- Divs with Text End -->
                 </div>
                 <!-- Actual Content End -->
             </div>

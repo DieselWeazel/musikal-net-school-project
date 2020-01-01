@@ -147,9 +147,7 @@ function addEditAlbumFields() {
         }
 
 }
-// <h2 th:text="${artist.getEntityTitle()}" id="mainEntityHeader">ARTIST DISPLAYNAME</h2>
-// <h3 th:text="${artist.getDescription()}" id="mainDescHeader">ARTIST DESCRIPTIONDISPLAY</h3>
-// <h3 th:text="${album.getEntityTitle()}" class="trackEntityHeader">
+
 function addEditFieldsToEntity() {
     // inputArtistName = document.createElement("INPUT");
     var artistHeadderEntityTitle = document.getElementById("mainEntityHeader");

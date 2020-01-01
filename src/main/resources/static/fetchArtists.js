@@ -161,25 +161,6 @@ function insertTrackMember(data) {
   memberContainer.innerHTML = memberContainerHtml;
 }
 
-//TODO delete if testing shows all works!
-// function insertMembersWithNoImage() {
-//   var html = "";
-//   for (var i = 0; i < data.length; i++) {
-//     html += insertMemberWithoutImage(data[i]);
-//   }
-// }
-//
-// function insertMemberWithoutImage(member) {
-//   var html = "";
-//   // var artistContainer = document.createElement('div');
-//   // artistContainer.className = "divImageMember";
-//   var name = member.name;
-//   var description = member.description;
-//   // var genre = member.genre[0];
-//   var imgLocation = member.image;
-//   html += "<div class='divImageMember'><p>" + member.name + "</p><p>" + member.description + "</p></div>";
-//   return html;
-// }
 
 function setButtons() {
     onArtistView = true;

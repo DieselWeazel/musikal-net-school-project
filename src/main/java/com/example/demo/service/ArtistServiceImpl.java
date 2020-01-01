@@ -64,6 +64,7 @@ public class ArtistServiceImpl implements AbstractMusicService<Artist, ArtistDTO
         Genre genre = genreRepository.findById(artistCreateDTO.getGenreId()).orElseThrow(RuntimeException::new);
         log.info("Recieved = {}", artistCreateDTO.toString());
         Artist newArtist = new Artist(artistCreateDTO.getName(), artistCreateDTO.getDescription(), genre, artistCreateDTO.getImage());
+        log.info("Created Artist = {}", newArtist.getEntityTitle() + newArtist.getDescription());
         artistRepository.save(newArtist);
         return new ArtistDTO(artistCreateDTO.getName(), artistCreateDTO.getDescription(), newArtist.getId(), new SimpleGenreDTO(genre.getEntityTitle()), artistCreateDTO.getImage());
     }
