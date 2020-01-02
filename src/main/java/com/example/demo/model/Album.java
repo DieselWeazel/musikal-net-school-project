@@ -1,97 +1,110 @@
 package com.example.demo.model;
 
-import javax.persistence.*;
 import java.util.List;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "album")
-@AttributeOverrides( {
-        @AttributeOverride(name = "id", column = @Column(name = "album_id")),
-        @AttributeOverride(name ="entityTitle", column = @Column(name = "album_title"))
+@AttributeOverrides({
+  @AttributeOverride(name = "id", column = @Column(name = "album_id")),
+  @AttributeOverride(name = "entityTitle", column = @Column(name = "album_title"))
 })
 public class Album extends MusicEntity {
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    @JoinColumn(name = "album_id")
-    private List<Track> trackList;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "artist_id")
-    private Artist artist;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "genre_id")
-    private Genre genre;
-    private String image;
+  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+  @JoinColumn(name = "album_id")
+  private List<Track> trackList;
 
-    public Album() {
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "artist_id")
+  private Artist artist;
 
-    }
-    public Album(List<Track> trackList) {
-        this.trackList = trackList;
-    }
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "genre_id")
+  private Genre genre;
 
-    public Album(String entityTitle, String description) {
-        super(entityTitle, description);
-    }
+  private String image;
 
-    public Album(String entityTitle, String description,
-                 List<Track> trackList) {
-        super(entityTitle, description);
-        this.trackList = trackList;
-    }
+  public Album() {}
 
-    public Album(String entityTitle, String description, List<Track> trackList, Artist artist, Genre genre) {
-        super(entityTitle, description);
-        this.trackList = trackList;
-        this.artist = artist;
-        this.genre = genre;
-    }
+  public Album(List<Track> trackList) {
+    this.trackList = trackList;
+  }
 
-    public Album(String entityTitle, String description, List<Track> trackList, Artist artist, Genre genre, String image) {
-        super(entityTitle, description);
-        this.trackList = trackList;
-        this.artist = artist;
-        this.genre = genre;
-        this.image = image;
-    }
+  public Album(String entityTitle, String description) {
+    super(entityTitle, description);
+  }
 
-    public List<Track> getTrackList() {
-        return trackList;
-    }
+  public Album(String entityTitle, String description, List<Track> trackList) {
+    super(entityTitle, description);
+    this.trackList = trackList;
+  }
 
-    public void setTrackList(List<Track> trackList) {
-        this.trackList = trackList;
-    }
+  public Album(
+      String entityTitle, String description, List<Track> trackList, Artist artist, Genre genre) {
+    super(entityTitle, description);
+    this.trackList = trackList;
+    this.artist = artist;
+    this.genre = genre;
+  }
 
-    public Genre getGenre() {
-        return genre;
-    }
+  public Album(
+      String entityTitle,
+      String description,
+      List<Track> trackList,
+      Artist artist,
+      Genre genre,
+      String image) {
+    super(entityTitle, description);
+    this.trackList = trackList;
+    this.artist = artist;
+    this.genre = genre;
+    this.image = image;
+  }
 
-    public void setGenre(Genre genre) {
-        this.genre = genre;
-    }
+  public List<Track> getTrackList() {
+    return trackList;
+  }
 
-    public Artist getArtist() {
-        return artist;
-    }
+  public void setTrackList(List<Track> trackList) {
+    this.trackList = trackList;
+  }
 
-    public void setArtist(Artist artist) {
-        this.artist = artist;
-    }
+  public Genre getGenre() {
+    return genre;
+  }
 
-    public String getImage() {
-        return image;
-    }
+  public void setGenre(Genre genre) {
+    this.genre = genre;
+  }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
+  public Artist getArtist() {
+    return artist;
+  }
 
-    @Override
-    public String toString() {
-        return "Album{" +
-                "trackList=" + trackList +
-                ", artist=" + artist +
-                ", genre=" + genre +
-                '}';
-    }
+  public void setArtist(Artist artist) {
+    this.artist = artist;
+  }
+
+  public String getImage() {
+    return image;
+  }
+
+  public void setImage(String image) {
+    this.image = image;
+  }
+
+  @Override
+  public String toString() {
+    return "Album{" + "trackList=" + trackList + ", artist=" + artist + ", genre=" + genre + '}';
+  }
 }

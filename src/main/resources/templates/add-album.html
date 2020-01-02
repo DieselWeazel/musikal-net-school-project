@@ -2,21 +2,20 @@
 <html lang="sv" xmlns:th="http://www.thymeleaf.org">
 <!-- HEAD -->
 <head>
-    <!-- CSS -->
-    <!--        <link rel="stylesheet" href="../static/css/style.css" />-->
-    <!--        <script src="../static/headerScript.js"></script>-->
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
-    <script src="/webjars/jquery/jquery.min.js"></script>
-    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
-    <script th:src="@{headerScript.js}" type="module"></script>
-    <script th:src="@{addAlbum.js}" type="module"></script>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi"/>
-    <meta charset="UTF-8"/>
-    <title>MusikalNet - Add Album</title>
+  <!-- CSS -->
+  <!--        <link rel="stylesheet" href="../static/css/style.css" />-->
+  <!--        <script src="../static/headerScript.js"></script>-->
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+  <script src="/webjars/jquery/jquery.min.js"></script>
+  <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+  <script th:src="@{headerScript.js}" type="module"></script>
+  <script th:src="@{addAlbum.js}" type="module"></script>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi"/>
+  <meta charset="UTF-8"/>
+  <title>MusikalNet - Add Album</title>
 
-    <!-- JAVASCRIPT MODULE -->
 
 </head>
 
@@ -26,86 +25,86 @@
 <!-- CONTAINER DIV -->
 <div id="container">
 
-    <!-- HEADDER, controlled with Fragment -->
-    <header>
-    </header>
-    <!-- HEAD & NAV END -->
+  <!-- HEADDER, controlled with Fragment -->
+  <header>
+  </header>
+  <!-- HEAD & NAV END -->
 
-    <!-- MAIN -->
-    <main>
+  <!-- MAIN -->
+  <main>
 
-        <!-- mainDiv -->
-        <div class="mainDiv" id="mainDivId">
-            <!-- divsWithContent -->
-            <div class="divsWithContent">
-                <!-- Actual Content -->
-                <div class="actualContent">
+    <!-- mainDiv -->
+    <div class="mainDiv" id="mainDivId">
+      <!-- divsWithContent -->
+      <div class="divsWithContent">
+        <!-- Actual Content -->
+        <div class="actualContent">
 
-                    <div class="divsWithText" id="formHolderDiv">
-                        <!-- Section -->
+          <div class="divsWithText" id="formHolderDiv">
+            <!-- Section -->
 
-                        <section>
-                            <h2>Create Album:</h2>
-                            <h3>Add album to our existing artists.</h3>
-                            <div class="formDiv">
-                                <label for="albumNameInput">Artist Name:</label>
-                                <input type="text" name="entityName" id="albumNameInput" value="Album Name">
-                                <label for="selectArtist">Select Artist</label>
-                                <select id="selectArtist">
+            <section>
+              <h2>Create Album:</h2>
+              <h3>Add album to our existing artists.</h3>
+              <div class="formDiv">
+                <label for="albumNameInput">Artist Name:</label>
+                <input type="text" name="entityName" id="albumNameInput" value="Album Name">
+                <label for="selectArtist">Select Artist</label>
+                <select id="selectArtist">
 
-                                </select>
+                </select>
 
-                                <label for="imageInputUrl">Image URL:</label>
-                                <input type="text" name="description" id="imageInputUrl"
-                                       value="img url">
+                <label for="imageInputUrl">Image URL:</label>
+                <input type="text" name="description" id="imageInputUrl"
+                       value="img url">
 
-                                <label for="descriptionInput">Album Description:</label>
-                                <input type="text" name="description" id="descriptionInput"
-                                       value="Artist Description goes here">
+                <label for="descriptionInput">Album Description:</label>
+                <input type="text" name="description" id="descriptionInput"
+                       value="Artist Description goes here">
 
-                                <table>
-                                    <tr>
-                                        <th>Track:</th>
-                                    </tr>
-                                    <tr class="trackRowClass">
-                                        <td>
-                                            <label for="inputTrack0">Track Title:</label>
-                                            <input type="text" name="track" id="inputTrack0"
-                                                   value="TRACK NAME" class="inputTrackClass">
-                                        </td>
-                                    </tr>
-                                    <tbody id ="trackTableBody">
+                <table>
+                  <tr>
+                    <th>Track:</th>
+                  </tr>
+                  <tr class="trackRowClass">
+                    <td>
+                      <label for="inputTrack0">Track Title:</label>
+                      <input type="text" name="track" id="inputTrack0"
+                             value="TRACK NAME" class="inputTrackClass">
+                    </td>
+                  </tr>
+                  <tbody id="trackTableBody">
 
-                                    </tbody>
-                                    <tr>
-                                        <td>
-                                            <button type="button" value="Submit" id="addTrack">Add More Tracks</button>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <button type="button" value="Submit" id="submitButton">Submit</button>
-                                <!--                  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>-->
-                            </div>
+                  </tbody>
+                  <tr>
+                    <td>
+                      <button type="button" value="Submit" id="addTrack">Add More Tracks</button>
+                    </td>
+                  </tr>
+                </table>
+                <button type="button" value="Submit" id="submitButton">Submit</button>
+                <!--                  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>-->
+              </div>
 
-                        </section>
-                    </div>
-
-                </div>
-                <!-- Actual Content End -->
-            </div>
-            <!-- Divs With Content End -->
-            <!-- MainDiv End -->
+            </section>
+          </div>
 
         </div>
+        <!-- Actual Content End -->
+      </div>
+      <!-- Divs With Content End -->
+      <!-- MainDiv End -->
 
-    </main>
-    <!-- MAIN END -->
+    </div>
+
+  </main>
+  <!-- MAIN END -->
 
 
-    <!-- FOOTER -->
-    <footer>
+  <!-- FOOTER -->
+  <footer>
 
-    </footer>
+  </footer>
 
 </div>
 </body>

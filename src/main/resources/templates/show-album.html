@@ -2,22 +2,19 @@
 <html lang="sv" xmlns:th="http://www.thymeleaf.org">
 <!-- HEAD -->
 <head>
-    <!-- CSS -->
-    <!--        <link rel="stylesheet" href="../static/css/style.css" />-->
-    <!--        <script src="../static/headerScript.js"></script>-->
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
-    <script src="/webjars/jquery/jquery.min.js"></script>
-    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
-    <script th:src="@{../../headerScript.js}" type="module"></script>
-    <script th:src="@{../../deleteEditEntity.js}" type="module"></script>
-    <!--    <script th:src="@{fetchArtists.js}" type="module"></script>-->
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi"/>
-    <meta charset="UTF-8"/>
-    <title>MusikalNet - Album</title>
-
-    <!-- JAVASCRIPT MODULE -->
+  <!-- CSS -->
+  <!--        <link rel="stylesheet" href="../static/css/style.css" />-->
+  <!--        <script src="../static/headerScript.js"></script>-->
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+  <script src="/webjars/jquery/jquery.min.js"></script>
+  <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+  <script th:src="@{../../headerScript.js}" type="module"></script>
+  <script th:src="@{../../deleteEditEntity.js}" type="module"></script>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi"/>
+  <meta charset="UTF-8"/>
+  <title>MusikalNet - Album</title>
 
 </head>
 
@@ -27,68 +24,72 @@
 <!-- CONTAINER DIV -->
 <div id="container">
 
-    <!-- HEADDER, controlled with Fragment -->
-    <header>
-    </header>
-    <!-- HEAD & NAV END -->
+  <!-- HEADDER, controlled with Fragment -->
+  <header>
+  </header>
+  <!-- HEAD & NAV END -->
 
-    <!-- MAIN -->
-    <main>
+  <!-- MAIN -->
+  <main>
 
-        <!-- mainDiv -->
-        <div class="mainDiv" id="mainDivId">
-            <!-- divsWithContent -->
-            <div class="divsWithContent">
-                <!-- Actual Content -->
-                <div class="actualContent">
+    <!-- mainDiv -->
+    <div class="mainDiv" id="mainDivId">
+      <!-- divsWithContent -->
+      <div class="divsWithContent">
+        <!-- Actual Content -->
+        <div class="actualContent">
 
-                    <div class="divsWithText">
-                        <!-- Section -->
-                        <div id="member_container" class="member_grid">
-                            <section>
-                                <div th:object="${album}" id="viewEntity">
-                                    <div class = "viewEntityDivs"  id="mainEntityDiv">
-                                        <img th:if="${album.getId() <= 25}" th:alt="${album.getEntityTitle()}" height='370' width='370'
-                                             th:src="@{${'../../' + album.getImage()}}"/>
-                                        <img th:unless="${album.getId() <= 25}" th:alt="${album.getEntityTitle()}" height='370' width='370'
-                                             th:src="${album.getImage()}"/>
-                                        <h2 th:text="${album.getEntityTitle()}" id="mainEntityHeader">ARTIST DISPLAYNAME</h2>
-                                        <h3 th:text="${album.getDescription()}" id="mainDescHeader">ARTIST DESCRIPTIONDISPLAY</h3>
-                                        <div class="divButtons"  id ="divButtonEntityView">
-                                            <button type="button" id="delete">Delete Album</button>
-                                            <button type="button" id="edit">Edit</button>
-                                        </div>
-                                    </div>
-                                    <div class="viewEntityDivs" id ="albumTracksDiv">
-                                        <div th:each="track : ${album.getTrackList()}" class = "albumTrackDivClass">
-                                            <h3 th:text="${track.getDescription()}" class="trackDescHeader"></h3>
-                                            <p> : </p>
-                                            <h3 th:text="${track.getEntityTitle()}" class="trackEntityHeader"></h3>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </section>
-                        </div>
+          <div class="divsWithText">
+            <!-- Section -->
+            <div id="member_container" class="member_grid">
+              <section>
+                <div th:object="${album}" id="viewEntity">
+                  <div class="viewEntityDivs" id="mainEntityDiv">
+                    <img th:if="${album.getId() <= 25}" th:alt="${album.getEntityTitle()}"
+                         height='370' width='370'
+                         th:src="@{${'../../' + album.getImage()}}"/>
+                    <img th:unless="${album.getId() <= 25}" th:alt="${album.getEntityTitle()}"
+                         height='370' width='370'
+                         th:src="${album.getImage()}"/>
+                    <h2 th:text="${album.getEntityTitle()}" id="mainEntityHeader">ARTIST
+                      DISPLAYNAME</h2>
+                    <h3 th:text="${album.getDescription()}" id="mainDescHeader">ARTIST
+                      DESCRIPTIONDISPLAY</h3>
+                    <div class="divButtons" id="divButtonEntityView">
+                      <button type="button" id="delete">Delete Album</button>
+                      <button type="button" id="edit">Edit</button>
+                    </div>
+                  </div>
+                  <div class="viewEntityDivs" id="albumTracksDiv">
+                    <div th:each="track : ${album.getTrackList()}" class="albumTrackDivClass">
+                      <h3 th:text="${track.getDescription()}" class="trackDescHeader"></h3>
+                      <p> : </p>
+                      <h3 th:text="${track.getEntityTitle()}" class="trackEntityHeader"></h3>
                     </div>
 
+                  </div>
                 </div>
-                <!-- Actual Content End -->
+
+              </section>
             </div>
-            <!-- Divs With Content End -->
-            <!-- MainDiv End -->
+          </div>
 
         </div>
+        <!-- Actual Content End -->
+      </div>
+      <!-- Divs With Content End -->
+      <!-- MainDiv End -->
 
-    </main>
-    <!-- MAIN END -->
+    </div>
+
+  </main>
+  <!-- MAIN END -->
 
 
-    <!-- FOOTER -->
-    <footer>
+  <!-- FOOTER -->
+  <footer>
 
-    </footer>
+  </footer>
 
 </div>
 </body>

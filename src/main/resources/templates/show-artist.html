@@ -2,22 +2,19 @@
 <html lang="sv" xmlns:th="http://www.thymeleaf.org">
 <!-- HEAD -->
 <head>
-    <!-- CSS -->
-    <!--        <link rel="stylesheet" href="../static/css/style.css" />-->
-    <!--        <script src="../static/headerScript.js"></script>-->
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
-    <script src="/webjars/jquery/jquery.min.js"></script>
-    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
-    <script th:src="@{../../headerScript.js}" type="module"></script>
-    <script th:src="@{../../deleteEditEntity.js}" type="module"></script>
-<!--    <script th:src="@{../../fetchArtists.js}" type="module"></script>-->
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi"/>
-    <meta charset="UTF-8"/>
-    <title>MusikalNet - Artist</title>
-
-    <!-- JAVASCRIPT MODULE -->
+  <!-- CSS -->
+  <!--        <link rel="stylesheet" href="../static/css/style.css" />-->
+  <!--        <script src="../static/headerScript.js"></script>-->
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+  <script src="/webjars/jquery/jquery.min.js"></script>
+  <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+  <script th:src="@{../../headerScript.js}" type="module"></script>
+  <script th:src="@{../../deleteEditEntity.js}" type="module"></script>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi"/>
+  <meta charset="UTF-8"/>
+  <title>MusikalNet - Artist</title>
 
 </head>
 
@@ -27,87 +24,93 @@
 <!-- CONTAINER DIV -->
 <div id="container">
 
-    <!-- HEADDER, controlled with Fragment -->
-    <header>
-    </header>
-    <!-- HEAD & NAV END -->
+  <!-- HEADDER, controlled with Fragment -->
+  <header>
+  </header>
+  <!-- HEAD & NAV END -->
 
-    <!-- MAIN -->
-    <main>
+  <!-- MAIN -->
+  <main>
 
-        <!-- mainDiv -->
-        <div class="mainDiv" id="mainDivId">
-            <!-- divsWithContent -->
-            <div class="divsWithContent">
-                <!-- Actual Content -->
-                <div class="actualContent">
+    <!-- mainDiv -->
+    <div class="mainDiv" id="mainDivId">
+      <!-- divsWithContent -->
+      <div class="divsWithContent">
+        <!-- Actual Content -->
+        <div class="actualContent">
 
-                    <div class="divsWithText">
-                        <!-- Section -->
-                        <div id="member_container" class="member_grid">
-                        <section>
-                                <div th:object="${artist}" id="viewEntity">
-                                    <div class = "viewEntityDivs"  id="mainEntityDiv">
-                                        <img th:if="${artist.getId() <= 12}" th:alt="${artist.getEntityTitle()}" height='370' width='370' th:src="@{${'../../' + artist.getImage()}}"/>
-                                        <img th:unless="${artist.getId() <= 12}" th:alt="${artist.getEntityTitle()}" height='370' width='370' th:src="${artist.getImage()}"/>
-                                        <h2 th:text="${artist.getEntityTitle()}" id="mainEntityHeader">ARTIST DISPLAYNAME</h2>
-                                        <h3 th:text="${artist.getDescription()}" id="mainDescHeader">ARTIST DESCRIPTIONDISPLAY</h3>
-                                        <div class ="divButtons" id ="divButtonEntityView">
-                                            <button type="button" id="delete">Delete Artist</button>
-                                            <button type="button" id="edit">Edit</button>
-                                        </div>
-                                    </div>
-                                    <div class = "viewEntityDivs">
-                                        <h3>Known for:</h3>
-                                        <div th:each="album : ${artist.getArtistAlbumList()}">
-                                            <img th:if="${artist.getId() <= 12}" th:alt="${album.getEntityTitle()}" height='370' width='370' th:src="@{${'../../' + album.getImage()}}"/>
-                                            <img th:unless="${artist.getId() <= 12}" th:alt="${album.getEntityTitle()}" height='370' width='370' th:src="${album.getImage()}"/>
-                                            <div th:each="track : ${album.getTrackList()}">
-                                                    <p th:text="${track.getEntityTitle()}"></p>
-                                                </div>
-                                            </h3>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                        </section>
-                        </div>
+          <div class="divsWithText">
+            <!-- Section -->
+            <div id="member_container" class="member_grid">
+              <section>
+                <div th:object="${artist}" id="viewEntity">
+                  <div class="viewEntityDivs" id="mainEntityDiv">
+                    <img th:if="${artist.getId() <= 12}" th:alt="${artist.getEntityTitle()}"
+                         height='370' width='370' th:src="@{${'../../' + artist.getImage()}}"/>
+                    <img th:unless="${artist.getId() <= 12}" th:alt="${artist.getEntityTitle()}"
+                         height='370' width='370' th:src="${artist.getImage()}"/>
+                    <h2 th:text="${artist.getEntityTitle()}" id="mainEntityHeader">ARTIST
+                      DISPLAYNAME</h2>
+                    <h3 th:text="${artist.getDescription()}" id="mainDescHeader">ARTIST
+                      DESCRIPTIONDISPLAY</h3>
+                    <div class="divButtons" id="divButtonEntityView">
+                      <button type="button" id="delete">Delete Artist</button>
+                      <button type="button" id="edit">Edit</button>
                     </div>
-                    <!--          <div class="divsWithText">-->
-                    <!--            &lt;!&ndash; Section &ndash;&gt;-->
-                    <!--            <section>-->
-                    <!--              <h2>Fortsättning</h2>-->
-                    <!--              <h3>Detaljer</h3>-->
-                    <!--              <h4>2019-12-02</h4>-->
-                    <!--              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget-->
-                    <!--                dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,-->
-                    <!--                nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium-->
-                    <!--                quis,-->
-                    <!--                sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec,-->
-                    <!--                vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,-->
-                    <!--                justo.</p>-->
+                  </div>
+                  <div class="viewEntityDivs">
+                    <h3>Known for:</h3>
+                    <div th:each="album : ${artist.getArtistAlbumList()}">
+                      <img th:if="${artist.getId() <= 12}" th:alt="${album.getEntityTitle()}"
+                           height='370' width='370' th:src="@{${'../../' + album.getImage()}}"/>
+                      <img th:unless="${artist.getId() <= 12}" th:alt="${album.getEntityTitle()}"
+                           height='370' width='370' th:src="${album.getImage()}"/>
+                      <div th:each="track : ${album.getTrackList()}">
+                        <p th:text="${track.getEntityTitle()}"></p>
+                      </div>
+                      </h3>
+                    </div>
 
-                    <!--            </section>-->
-
-                    <!--          </div>-->
-                    <!-- Divs with Text End -->
+                  </div>
                 </div>
-                <!-- Actual Content End -->
+
+              </section>
             </div>
-            <!-- Divs With Content End -->
-            <!-- MainDiv End -->
+          </div>
+          <!--          <div class="divsWithText">-->
+          <!--            &lt;!&ndash; Section &ndash;&gt;-->
+          <!--            <section>-->
+          <!--              <h2>Fortsättning</h2>-->
+          <!--              <h3>Detaljer</h3>-->
+          <!--              <h4>2019-12-02</h4>-->
+          <!--              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget-->
+          <!--                dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,-->
+          <!--                nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium-->
+          <!--                quis,-->
+          <!--                sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec,-->
+          <!--                vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,-->
+          <!--                justo.</p>-->
 
+          <!--            </section>-->
+
+          <!--          </div>-->
+          <!-- Divs with Text End -->
         </div>
+        <!-- Actual Content End -->
+      </div>
+      <!-- Divs With Content End -->
+      <!-- MainDiv End -->
 
-    </main>
-    <!-- MAIN END -->
+    </div>
+
+  </main>
+  <!-- MAIN END -->
 
 
-    <!-- FOOTER -->
-    <footer>
+  <!-- FOOTER -->
+  <footer>
 
-    </footer>
+  </footer>
 
 </div>
 </body>
